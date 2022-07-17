@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ALL">
     <HomeTop />
     <HomeCenter style="margin-top: 100px" />
     <News style="margin-top: 100px" />
@@ -19,4 +19,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.ALL {
+  @media (max-width: 900px) {
+    overflow-x: hidden;
+  }
+}
+</style>

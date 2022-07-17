@@ -194,6 +194,9 @@ export default {
         backdrop-filter: blur(40px);
         border-radius: 20px;
         padding: 30px;
+        @media (max-width: 900px) {
+          overflow-x: hidden;
+        }
 
         text-align: center;
         animation: Op 1s forwards;

@@ -90,6 +90,7 @@ export default {
   animation-delay: 0.2s;
   @media (max-width: 900px) {
     height: 900px;
+    overflow-x: hidden;
   }
   .illustration {
     position: absolute;
