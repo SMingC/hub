@@ -147,7 +147,7 @@ export default {
   color: #000000;
   padding: 20px;
   @media (max-width: 900px) {
-    font-size: 25px;
+    font-size: 16px;
     line-height: 17px;
     padding: 10px;
   }
@@ -163,7 +163,7 @@ export default {
   line-height: 31px;
   color: #838383;
   @media (max-width: 900px) {
-    font-size: 25px;
+    font-size: 15px;
     line-height: 15px;
   }
 }
