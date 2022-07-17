@@ -21,6 +21,9 @@ export default {
 }
 *::-webkit-scrollbar {
   display: none;
+  @media (max-width: 900px) {
+    overflow: hidden;
+  }
 }
 
 html,
