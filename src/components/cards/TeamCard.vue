@@ -71,12 +71,12 @@ export default {};
   align-items: center;
   margin-left: 25%;
   @media (max-width: 900px) {
-    font-size: 5px;
+    font-size: 15px;
     line-height: 40px;
     grid-template-columns: 20px auto;
     margin-left: 20px;
     #fk1 {
-      width: 10px;
+      width: 20px;
     }
   }
 }
@@ -91,7 +91,7 @@ export default {};
   color: #e1e1e6;
   margin-left: 25%;
   @media (max-width: 900px) {
-    font-size: 12px;
+    font-size: 20px;
     line-height: 40px;
     margin-left: 10%;
   }
@@ -106,7 +106,7 @@ export default {};
   color: #61dcfb;
   margin-left: 25%;
   @media (max-width: 900px) {
-    font-size: 5px;
+    font-size: 15px;
     line-height: 20px;
     margin-left: 15%;
   }
@@ -116,7 +116,7 @@ export default {};
   color: #61dcfb;
   margin-left: 25%;
   @media (max-width: 900px) {
-    font-size: 1px;
+    font-size: 15px;
     line-height: 12px;
     margin-left: 15%;
   }
@@ -144,7 +144,7 @@ p {
   font-size: 16px;
   color: #121214;
   @media (max-width: 900px) {
-    font-size: 5px;
+    font-size: 15px;
     font-weight: 500;
   }
 }
@@ -154,7 +154,7 @@ p {
 }
 #fk2 {
   @media (max-width: 900px) {
-    width: 50px;
+    width: 100px;
     margin-top: -30px;
   }
 }

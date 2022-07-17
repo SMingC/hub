@@ -1,6 +1,6 @@
 <template>
   <div class="Team">
-    <img src="@/assets/svg/Cartoon.svg" alt="" />
+    <img :src="url" alt="teamAll" />
     <div class="NamesTangle">
       <div class="Names">
         <div v-for="(name, index) in names" :key="index" class="name">
@@ -21,6 +21,7 @@ export default {
     MicleBird,
     Liner,
   },
+  props: ["url"],
   data() {
     return {
       names: ["MCS", "MHW", "ZZT"],

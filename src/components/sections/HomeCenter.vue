@@ -4,6 +4,7 @@
       <div class="aboutTop">
         <router-link to="search" class="search">
           <img src="@/assets/svg/search.svg" alt="search" />
+          <div class="signText">注册</div>
         </router-link>
         <router-link to="/login" class="signIn">
           <img src="@/assets/svg/user.svg" alt="user" />
@@ -93,6 +94,7 @@ export default {
     overflow-x: hidden;
   }
   .illustration {
+    width: 600px;
     position: absolute;
     bottom: -20px;
     right: 10px;
@@ -129,6 +131,11 @@ export default {
     }
     .search {
       padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      align-items: center;
+      justify-items: center;
+      gap: 20px;
       &:hover {
         @include hoverBottom;
       }
@@ -137,7 +144,18 @@ export default {
         transform: scale(0.6);
       }
     }
-
+    .signText {
+      font-family: "GB18030 Bitmap";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 32px;
+      color: #775ada;
+      @media (max-width: 900px) {
+        font-weight: 400;
+        font-size: 22px;
+      }
+    }
     .signIn {
       display: grid;
       grid-template-columns: repeat(2, 70px);
@@ -150,15 +168,6 @@ export default {
       @media (max-width: 900px) {
         padding: 0;
         transform: scale(0.6);
-      }
-
-      .signText {
-        font-family: "GB18030 Bitmap";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 32px;
-        line-height: 32px;
-        color: #775ada;
       }
     }
     .aboutCenter {

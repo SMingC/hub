@@ -27,7 +27,7 @@
           />
         </div>
       </div>
-      <TeamAll />
+      <TeamAll :url="cartoonUrls[0].teamCard.url" />
     </div>
     <div class="CardsWrapper">
       <div class="cardTitle">TEAM sofar...</div>
@@ -64,12 +64,15 @@ export default {
   methods: {
     getcartoonUrl: async () => {
       const query = `{
-        nchu200HubCollection{
+        nchu200HubCollection {
           items{
             cartoonCardsCollection{
               items{
                 url
               }
+            }
+            teamCard{
+              url
             }
           }
         }
