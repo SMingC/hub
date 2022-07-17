@@ -104,7 +104,7 @@ export default {
     }
   }
   .illustration:hover {
-    @include hoverScale(0.4);
+    @include hoverScale(0.8);
   }
 
   .AboutContent {

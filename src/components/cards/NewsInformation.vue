@@ -90,6 +90,7 @@ export default {};
   @media (max-width: 900px) {
     grid-template-columns: auto;
     grid-template-rows: repeat(2, auto);
+    margin-left: -70px;
   }
 }
 .Description {
