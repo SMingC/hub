@@ -77,6 +77,11 @@ export default {
   @media (max-width: 900px) {
     padding: 2%;
   }
+  .farmIcon {
+    @media (max-width: 900px) {
+      width: 45px;
+    }
+  }
 }
 .Title {
   font-family: "Wawati SC";
@@ -86,7 +91,7 @@ export default {
   line-height: 71px;
   color: #7391e0;
   @media (max-width: 900px) {
-    font-size: 18px;
+    font-size: 28px;
     line-height: 11px;
   }
 }
@@ -116,7 +121,7 @@ export default {
   padding-left: 15%;
   .N {
     @media (max-width: 900px) {
-      width: 20px;
+      width: 30px;
     }
   }
 }
@@ -129,7 +134,7 @@ export default {
   line-height: 71px;
   color: #7391e0;
   @media (max-width: 900px) {
-    font-size: 18px;
+    font-size: 28px;
     line-height: 10px;
   }
 }
@@ -142,7 +147,7 @@ export default {
   color: #000000;
   padding: 20px;
   @media (max-width: 900px) {
-    font-size: 15px;
+    font-size: 25px;
     line-height: 17px;
     padding: 10px;
   }
@@ -158,7 +163,7 @@ export default {
   line-height: 31px;
   color: #838383;
   @media (max-width: 900px) {
-    font-size: 5px;
+    font-size: 25px;
     line-height: 15px;
   }
 }
@@ -194,7 +199,7 @@ export default {
   line-height: 30px;
   color: #7391e0;
   @media (max-width: 900px) {
-    font-size: 5px;
+    font-size: 15px;
   }
 }
 .right {
@@ -202,7 +207,7 @@ export default {
   height: 400px;
   z-index: 1000;
   @media (max-width: 900px) {
-    width: 100px;
+    width: 150px;
   }
 }
 .Hover {
