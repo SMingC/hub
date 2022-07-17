@@ -106,6 +106,7 @@ export default {};
   color: #61dcfb;
   margin-left: 25%;
   @media (max-width: 900px) {
+    width: 130px;
     font-size: 15px;
     line-height: 20px;
     margin-left: 15%;
