@@ -71,8 +71,8 @@ export default {};
   align-items: center;
   margin-left: 25%;
   @media (max-width: 900px) {
-    font-size: 15px;
-    line-height: 40px;
+    font-size: 10px;
+    line-height: 20px;
     grid-template-columns: 20px auto;
     margin-left: 20px;
     #fk1 {
@@ -91,8 +91,8 @@ export default {};
   color: #e1e1e6;
   margin-left: 25%;
   @media (max-width: 900px) {
-    font-size: 20px;
-    line-height: 40px;
+    font-size: 15px;
+    line-height: 30px;
     margin-left: 10%;
   }
 }
@@ -145,7 +145,7 @@ p {
   font-size: 16px;
   color: #121214;
   @media (max-width: 900px) {
-    font-size: 15px;
+    font-size: 10px;
     font-weight: 500;
   }
 }
