@@ -1,18 +1,45 @@
 <template>
-  <div class="videoContentWrapper">
-    <img class="icon" src="@/assets/icons/icon.svg" alt="icon" />
-    <div class="menuButtons">
-      <div v-for="(icon, index) in icons" :key="index">
-        <VideoTemplate :url="icon.url" :title="icon.title" />
+  <div class="Wrap">
+    <div class="videoContentWrapper">
+      <img
+        class="icon"
+        src="@/assets/icons/icon.svg"
+        alt="icon"
+        @click="goHome"
+      />
+      <div class="menuButtons">
+        <div v-for="(icon, index) in icons" :key="index">
+          <VideoTemplate :url="icon.url" :title="icon.title" />
+        </div>
+      </div>
+      <div v-show="isOnComputer" class="input">
+        <input type="text" class="search" />
+        <img src="@/assets/icons/sort.svg" alt="sort" class="sort" />
+      </div>
+      <div v-show="isOnComputer" class="User">
+        <AccountButton text="登陆" />
+        <AccountButton text="注册" />
       </div>
     </div>
-    <div v-show="isOnComputer" class="input">
-      <input type="text" class="search" />
-      <img src="@/assets/icons/sort.svg" alt="sort" class="sort" />
-    </div>
-    <div v-show="isOnComputer" class="User">
-      <AccountButton text="登陆" />
-      <AccountButton text="注册" />
+    <div v-show="!isOnComputer" class="phoneButton">
+      <div class="LogContent">
+        <HomeButton
+          :isColorReversed="false"
+          description="Log In"
+          where="/login"
+        />
+        <HomeButton
+          :isColorReversed="true"
+          description="Sign Up"
+          where="/register"
+        />
+      </div>
+      <img
+        class="smile"
+        v-show="!isOnComputer"
+        src="@/assets/svg/smile.svg"
+        alt="smile"
+      />
     </div>
   </div>
 </template>
@@ -20,11 +47,13 @@
 <script>
 import VideoTemplate from "@/components/button/VideoTemplate.vue";
 import AccountButton from "@/components/button/AccountButton.vue";
+import HomeButton from "@/components/button/HomeButton.vue";
 export default {
   props: ["isOnComputer"],
   components: {
     VideoTemplate,
     AccountButton,
+    HomeButton,
   },
   data() {
     return {
@@ -37,12 +66,13 @@ export default {
           url: require("@/assets/icons/videos.svg"),
           title: "影片",
         },
-        {
-          url: require("@/assets/icons/money.svg"),
-          title: "打赏",
-        },
       ],
     };
+  },
+  methods: {
+    goHome() {
+      this.$router.push("/");
+    },
   },
 };
 </script>
@@ -52,11 +82,18 @@ export default {
 .videoContentWrapper {
   @include gridStart(4);
   @media (max-width: 900px) {
-    @include gridStart(3);
+    @include gridStart(2);
+    grid-template-rows: auto auto;
+    gap: 30px;
   }
   padding: 20px;
   .icon {
     width: 60px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+      filter: hue-rotate(10deg) brightness(150%) saturate(120%);
+    }
     @media (max-width: 900px) {
       width: 40px;
       margin-left: -20px;
@@ -118,5 +155,25 @@ export default {
 .User {
   @include gridCenter(2);
   gap: 20px;
+}
+.phoneButton {
+  position: relative;
+  .LogContent {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    border-radius: 60px 0px 60px 60px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 50px;
+    transform: scale(0.8);
+  }
+  .smile {
+    position: absolute;
+    width: 150px;
+    left: 100px;
+    top: 120px;
+  }
 }
 </style>

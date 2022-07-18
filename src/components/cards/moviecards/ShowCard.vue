@@ -5,17 +5,27 @@
       indicator-position="outside"
       type="card"
       style="width: 90vw"
-      :height="isOnComputer ? '400px' : '100px'"
+      height="355px"
     >
       <el-carousel-item v-for="item in 4" :key="item">
-        <img class="loopImage" :src="url" />
+        <div style="position: relative">
+          <img class="loopImage" :src="url" />
+          <CardDescriptions
+            text="this is the video description"
+            class="leftBottom"
+          />
+        </div>
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
 
 <script>
+import CardDescriptions from "@/components/cards/moviecards/CardDescriptions.vue";
 export default {
+  components: {
+    CardDescriptions,
+  },
   props: ["isOnComputer"],
   data() {
     return {
@@ -37,6 +47,27 @@ export default {
   .loopImage {
     width: 100%;
     height: inherit;
+  }
+  .leftBottom {
+    bottom: 16px;
+    left: 10px;
+  }
+  .el-carousel__item:nth-child(2n) {
+    background: linear-gradient(
+      180deg,
+      rgba(108, 207, 238, 0.5) 0%,
+      rgba(76, 127, 228, 0.5) 100%
+    );
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+  }
+
+  .el-carousel__item:nth-child(2n + 1) {
+    background: rgba(255, 255, 255, 0.3);
+    border: 0.5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
   }
 }
 </style>
