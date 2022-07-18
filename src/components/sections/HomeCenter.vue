@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/css/layout.scss";
 .rock {
   position: absolute;
   top: 0;
@@ -56,16 +57,6 @@ export default {
     transform: scale(0.6);
     top: 100px;
   }
-}
-@mixin hoverBottom {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1),
-    inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-}
-
-@mixin hoverScale($scale: 1.2) {
-  transform: scale($scale);
 }
 
 @keyframes Op {
@@ -101,12 +92,15 @@ export default {
     z-index: 100;
     @media (max-width: 900px) {
       transform: scale(0.3);
-      bottom: -200px;
-      left: -150px;
+      bottom: -120px;
+      left: -80px;
     }
   }
   .illustration:hover {
     @include hoverScale(0.8);
+    @media (max-width: 900px) {
+      @include hoverScale(0.4);
+    }
   }
 
   .AboutContent {
@@ -137,7 +131,7 @@ export default {
       justify-items: center;
       gap: 20px;
       &:hover {
-        @include hoverBottom;
+        @include hoverButtom;
       }
       @media (max-width: 900px) {
         padding: 0;
@@ -163,7 +157,7 @@ export default {
       justify-items: center;
       padding: 15px;
       &:hover {
-        @include hoverBottom;
+        @include hoverButtom;
       }
       @media (max-width: 900px) {
         padding: 0;

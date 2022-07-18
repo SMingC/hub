@@ -13,6 +13,7 @@ export default {
    v2.0 | 20110126
    License: none (public domain)
 */
+
 * {
   transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   scrollbar-width: none;

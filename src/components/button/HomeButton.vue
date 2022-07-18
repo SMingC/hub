@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import "@/assets/css/layout.scss";
 export default {
   name: "HomeButton",
   props: ["isColorReversed", "description", "where"],
@@ -28,24 +29,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin buttonDefault {
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 23px;
-  color: #ffffff;
-  padding: 15px 30px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
-}
+@import "@/assets/css/layout.scss";
 .HomeButton {
-  @mixin hoverChange {
-    transform: translateY(5px);
-    filter: hue-rotate(10deg) brightness(150%) saturate(120%);
-  }
-
   :hover {
     .PurpleTangle {
       @include hoverChange;
