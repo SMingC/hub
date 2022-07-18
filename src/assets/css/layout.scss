@@ -35,3 +35,10 @@
 @mixin hoverScale($scale: 1.2) {
   transform: scale($scale);
 }
+
+@mixin gridRowsCenter($repeat: 1) {
+  display: grid;
+  grid-template-rows: repeat($repeat, auto);
+  align-items: center;
+  justify-items: center;
+}

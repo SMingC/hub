@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import AboutUs from "@/components/sections/AboutUs.vue";
-import VideoHome from "@/components/sections/VideoHome.vue";
+import VideoHome from "@/views/VideoHome.vue";
 
 Vue.use(VueRouter);
 
@@ -18,7 +18,7 @@ const routes = [
     component: AboutUs,
   },
   {
-    path: "/videohome",
+    path: "/video",
     name: "video",
     component: VideoHome,
   },
