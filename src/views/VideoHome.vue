@@ -3,17 +3,20 @@
     <VideoTopMenu :isOnComputer="isOnComputer" />
     <VideoCarousels :isOnComputer="isOnComputer" />
     <VideoTV :isOnComputer="isOnComputer" />
+    <AllSortsVideo :isOnComputer="isOnComputer" />
   </div>
 </template>
 
 <script>
-import VideoTopMenu from "@/components/sections/VideoTopMenu.vue";
-import VideoCarousels from "@/components/sections/VideoCarousels.vue";
-import VideoTV from "@/components/sections/VideoTV.vue";
+import VideoTopMenu from "@/components/sections/movieHome_section/VideoTopMenu.vue";
+import VideoCarousels from "@/components/sections/movieHome_section/VideoCarousels.vue";
+import VideoTV from "@/components/sections/movieHome_section/VideoTV.vue";
+import AllSortsVideo from "@/components/sections/movieHome_section/AllSortsVideo.vue";
 export default {
   components: {
     VideoTopMenu,
     VideoCarousels,
+    AllSortsVideo,
     VideoTV,
   },
   created() {
