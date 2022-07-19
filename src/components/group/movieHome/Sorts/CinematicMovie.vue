@@ -1,8 +1,13 @@
 <template>
   <div class="cinematicWrapper">
     <div class="cinematicContent">
-      <DescriptionVideo text="new cinematic movies" />
-      <MovieContentCards />
+      <DescriptionVideo :text="sortText" />
+      <MovieContentCards
+        :url="cardURL"
+        :description="descriptions"
+        where="where"
+        :stared="stared"
+      />
     </div>
   </div>
 </template>
@@ -15,6 +20,7 @@ export default {
     DescriptionVideo,
     MovieContentCards,
   },
+  props: ["sortText", "cardURL", "descriptions", "where", "stared"],
 };
 </script>
 
@@ -30,7 +36,7 @@ export default {
   .cinematicContent {
     overflow-x: auto;
     @include gridRowsStart(2);
-    gap: 80px;
+    gap: 60px;
     @media (max-width: 900px) {
       gap: 40px;
     }

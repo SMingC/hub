@@ -3,10 +3,10 @@
     <div class="cinematicErapper">
       <div v-for="item in 10" :key="item">
         <SingleContentCard
-          :url="require('@/assets/img/zshz.png')"
-          description="new cinematic movies"
-          where="/"
-          :stared="true"
+          :url="url"
+          :description="description"
+          where="where"
+          :stared="stared"
         />
       </div>
     </div>
@@ -21,6 +21,7 @@ export default {
     CardDescriptions,
     SingleContentCard,
   },
+  props: ["url", "description", "where", "stared"],
 };
 </script>
 

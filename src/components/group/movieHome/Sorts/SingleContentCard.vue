@@ -49,12 +49,12 @@ export default {
   }
   .discription {
     transform: scale(0.8);
-    left: -10px;
+    left: -5px;
     bottom: 0;
     @media (max-width: 900px) {
       transform: scale(0.6);
       width: 150px;
-      left: -30px;
+      left: -28px;
     }
   }
 }
