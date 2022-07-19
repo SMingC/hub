@@ -2,16 +2,19 @@
   <div class="videoTopWrapper">
     <VideoTopMenu :isOnComputer="isOnComputer" />
     <VideoCarousels :isOnComputer="isOnComputer" />
+    <VideoTV :isOnComputer="isOnComputer" />
   </div>
 </template>
 
 <script>
 import VideoTopMenu from "@/components/sections/VideoTopMenu.vue";
-import VideoCarousels from "@/components/sections/VideoCarousels";
+import VideoCarousels from "@/components/sections/VideoCarousels.vue";
+import VideoTV from "@/components/sections/VideoTV.vue";
 export default {
   components: {
     VideoTopMenu,
     VideoCarousels,
+    VideoTV,
   },
   created() {
     if (document.body.clientWidth <= 900) {

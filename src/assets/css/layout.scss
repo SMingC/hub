@@ -42,3 +42,9 @@
   align-items: center;
   justify-items: center;
 }
+@mixin gridRowsStart($repeat: 1) {
+  display: grid;
+  grid-template-rows: repeat($repeat, auto);
+  align-items: center;
+  justify-items: start;
+}
