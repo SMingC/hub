@@ -14,7 +14,7 @@
           <div class="poemText">挑尽寒灯到夜深</div>
           <div class="poemText">战和何者是良筹</div>
         </div>
-        <div class="HomeButtonWrapper">
+        <div v-show="isOnComputer" class="HomeButtonWrapper">
           <HomeButton
             :isColorReversed="false"
             description="让我康康"
@@ -27,7 +27,21 @@
           />
         </div>
       </div>
-      <TeamAll :url="cartoonUrls[0].teamCard.url" />
+      <TeamAll :url="cartoonUrls[0].teamCard.url" class="TeamAll" />
+      <HomeButton
+        v-show="!isOnComputer"
+        :isColorReversed="false"
+        description="让我康康"
+        where="/video"
+        class="onPhonButton"
+      />
+      <HomeButton
+        v-show="!isOnComputer"
+        :isColorReversed="true"
+        description="关于我们"
+        where="/about"
+        class="onPhonButton"
+      />
     </div>
     <div class="CardsWrapper">
       <div class="cardTitle">TEAM sofar...</div>
@@ -44,8 +58,8 @@
 
 <script>
 import HomeButton from "@/components/button/HomeButton.vue";
-import CartoonCard from "@/components/group/welcomeHome/SomethingIntersting_Page/CartoonCard.vue";
-import TeamAll from "@/components/group/welcomeHome/SomethingIntersting_Page/TeamAll.vue";
+import CartoonCard from "@/components/group/welcomeHome/SomethingIntersting_Page/CartoonCards.vue";
+import TeamAll from "@/components/group/welcomeHome/SomethingIntersting_Page/TeamAllPage.vue";
 export default {
   components: {
     HomeButton,
@@ -55,11 +69,15 @@ export default {
   data() {
     return {
       cartoonUrls: [],
+      isOnComputer: true,
     };
   },
   async created() {
     this.cartoonUrls = await this.getcartoonUrl();
     console.log(this.cartoonUrls);
+    if (document.body.clientWidth <= 900) {
+      this.isOnComputer = false;
+    }
   },
   methods: {
     getcartoonUrl: async () => {
@@ -102,6 +120,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.onPhonButton {
+  transform: scale(0.8);
+  margin-top: 40px;
+}
+.TeamAll {
+  @media (max-width: 900px) {
+    margin-top: 180px;
+  }
+}
+@import "@/assets/css/layout.scss";
 @keyframes Op {
   from {
     opacity: 0;
@@ -232,10 +260,10 @@ export default {
         animation: Op 1s forwards;
         animation-delay: 0.8s;
         opacity: 0;
-        @media (max-width: 900px) {
+        /* @media (max-width: 900px) {
           grid-template-columns: auto;
           grid-template-rows: auto auto;
-        }
+        } */
       }
     }
   }
