@@ -2,15 +2,18 @@
   <div class="cinematicWrapper">
     <div class="cinematicContent">
       <DescriptionVideo text="new cinematic movies" />
+      <MovieContentCards />
     </div>
   </div>
 </template>
 
 <script>
 import DescriptionVideo from "@/components/group/movieHome/DescriptionVideo.vue";
+import MovieContentCards from "@/components/group/movieHome/Sorts/MovieContentCards.vue";
 export default {
   components: {
     DescriptionVideo,
+    MovieContentCards,
   },
 };
 </script>
@@ -18,8 +21,19 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/layout.scss";
 .cinematicWrapper {
+  margin-top: -100px;
+  padding: 50px;
+  @media (max-width: 900px) {
+    margin-top: -60px;
+    padding: 20px 10px;
+  }
   .cinematicContent {
+    overflow-x: auto;
     @include gridRowsStart(2);
+    gap: 80px;
+    @media (max-width: 900px) {
+      gap: 40px;
+    }
   }
 }
 </style>

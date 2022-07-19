@@ -1,0 +1,35 @@
+<template>
+  <div class="contentCard">
+    <div class="cinematicErapper">
+      <div v-for="item in 10" :key="item">
+        <SingleContentCard
+          :url="require('@/assets/img/zshz.png')"
+          description="new cinematic movies"
+          where="/"
+          :stared="true"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import CardDescriptions from "@/components/group/movieHome/CardDescriptions.vue";
+import SingleContentCard from "@/components/group/movieHome/Sorts/SingleContentCard.vue";
+export default {
+  components: {
+    CardDescriptions,
+    SingleContentCard,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/layout.scss";
+.contentCard {
+  .cinematicErapper {
+    @include gridCenter(20);
+    gap: 20px;
+  }
+}
+</style>

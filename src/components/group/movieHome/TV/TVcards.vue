@@ -42,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 .card {
+  cursor: pointer;
   width: 300px;
   height: 250px;
   transform: translate(-50%, -50%);
@@ -168,7 +169,7 @@ export default {
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(40px);
     border-radius: 30px;
-    &:hover {
+    :hover {
       filter: hue-rotate(10deg) brightness(150%) saturate(120%);
     }
   }

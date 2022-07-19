@@ -14,6 +14,11 @@
   transform: translateY(5px);
   filter: hue-rotate(10deg) brightness(150%) saturate(120%);
 }
+@mixin hoverChangeUp {
+  cursor: pointer;
+  transform: translateY(-5px);
+  filter: hue-rotate(10deg) brightness(150%) saturate(120%);
+}
 @mixin gridCenter($repeat: 1) {
   display: grid;
   grid-template-columns: repeat($repeat, auto);

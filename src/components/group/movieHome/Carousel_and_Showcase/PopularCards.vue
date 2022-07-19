@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import CenterLeftCard from "@/components/group/movieHome/CenterLeftCard.vue";
-import CenterRightCards from "@/components/group/movieHome/CenterRightCards.vue";
+import CenterLeftCard from "@/components/group/movieHome/Carousel_and_Showcase/CenterLeftCard.vue";
+import CenterRightCards from "@/components/group/movieHome/Carousel_and_Showcase/CenterRightCards.vue";
 export default {
   components: { CenterLeftCard, CenterRightCards },
   data() {

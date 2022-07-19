@@ -23,6 +23,16 @@
     </div>
     <div v-show="!isOnComputer" class="phoneTvCenter">
       <DescriptionVideo text="new TV SERIES" />
+      <div class="phoneCardsLoop">
+        <div v-for="item in 10" :key="item">
+          <SingleContentCard
+            :url="require('@/assets/img/daxiong.png')"
+            description="doraemon: nobita no little war"
+            where="/"
+            :stared="true"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,10 +40,12 @@
 <script>
 import TVcards from "@/components/group/movieHome/TV/TVcards.vue";
 import DescriptionVideo from "@/components/group/movieHome/DescriptionVideo.vue";
+import SingleContentCard from "@/components/group/movieHome/Sorts/SingleContentCard.vue";
 export default {
   components: {
     TVcards,
     DescriptionVideo,
+    SingleContentCard,
   },
   props: ["isOnComputer"],
 };
@@ -52,9 +64,15 @@ export default {
     }
   }
   .phoneTvCenter {
+    overflow-x: auto;
     margin-top: -100px;
     @include gridRowsStart(2);
-    padding: 40px 10px;
+    padding: 20px 10px;
+    gap: 20px;
+    .phoneCardsLoop {
+      @include gridCenter(20);
+      gap: 20px;
+    }
   }
 }
 </style>
