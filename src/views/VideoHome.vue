@@ -4,6 +4,7 @@
     <VideoCarousels :isOnComputer="isOnComputer" />
     <VideoTV :isOnComputer="isOnComputer" />
     <AllSortsVideo :isOnComputer="isOnComputer" />
+    <FooterVideoHome />
   </div>
 </template>
 
@@ -12,12 +13,14 @@ import VideoTopMenu from "@/components/sections/movieHome_section/VideoTopMenu.v
 import VideoCarousels from "@/components/sections/movieHome_section/VideoCarousels.vue";
 import VideoTV from "@/components/sections/movieHome_section/VideoTV.vue";
 import AllSortsVideo from "@/components/sections/movieHome_section/AllSortsVideo.vue";
+import FooterVideoHome from "@/components/group/movieHome/footer/FooterVideoHome.vue";
 export default {
   components: {
     VideoTopMenu,
     VideoCarousels,
     AllSortsVideo,
     VideoTV,
+    FooterVideoHome,
   },
   created() {
     if (document.body.clientWidth <= 900) {
