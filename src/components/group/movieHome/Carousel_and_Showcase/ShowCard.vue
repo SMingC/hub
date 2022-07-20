@@ -52,22 +52,5 @@ export default {
     bottom: 16px;
     left: 10px;
   }
-  .el-carousel__item:nth-child(2n) {
-    background: linear-gradient(
-      180deg,
-      rgba(108, 207, 238, 0.5) 0%,
-      rgba(76, 127, 228, 0.5) 100%
-    );
-    backdrop-filter: blur(40px);
-    border-radius: 20px;
-  }
-
-  .el-carousel__item:nth-child(2n + 1) {
-    background: rgba(255, 255, 255, 0.3);
-    border: 0.5px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(40px);
-    border-radius: 20px;
-  }
 }
 </style>

@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import "animate.css";
 export default {
   components: {},
 };
@@ -15,7 +16,7 @@ export default {
 */
 
 * {
-  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   scrollbar-width: none;
   -ms-overflow-style: none;
   border: none;

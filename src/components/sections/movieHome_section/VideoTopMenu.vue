@@ -1,46 +1,86 @@
 <template>
+  <!-- transition => animate.css库 -->
+
   <div class="Wrap">
     <div class="videoContentWrapper">
-      <img
-        class="icon"
-        src="@/assets/icons/icon.svg"
-        alt="icon"
-        @click="goHome"
-      />
-      <div class="menuButtons">
-        <div v-for="(icon, index) in icons" :key="index">
-          <VideoTemplate :url="icon.url" :title="icon.title" />
+      <!-- icon -->
+      <transition
+        name="rubberBand"
+        enter-active-class="animate__animated animate__rubberBand "
+      >
+        <img
+          v-show="show"
+          class="icon"
+          src="@/assets/icons/icon.svg"
+          alt="icon"
+          @click="goHome"
+        />
+      </transition>
+
+      <!-- 导航按钮 -->
+      <transition
+        name="zoomInUp"
+        enter-active-class="animate__animated animate__zoomInUp"
+      >
+        <div v-show="show" class="menuButtons">
+          <div v-for="(icon, index) in icons" :key="index">
+            <VideoTemplate :url="icon.url" :title="icon.title" />
+          </div>
+          <ThemeSwitch v-show="!isOnComputer" style="transform: scale(0.6)" />
         </div>
-      </div>
-      <div v-show="isOnComputer" class="input">
-        <input type="text" class="search" />
-        <img src="@/assets/icons/sort.svg" alt="sort" class="sort" />
-      </div>
-      <div v-show="isOnComputer" class="User">
-        <AccountButton text="登陆" />
-        <AccountButton text="注册" />
-      </div>
+      </transition>
+
+      <!-- 搜索框 -->
+      <transition
+        name="light-speed"
+        enter-active-class="animate__animated animate__lightSpeedInLeft"
+      >
+        <div v-show="isOnComputer && show" class="input">
+          <input type="text" class="search" />
+          <img src="@/assets/icons/sort.svg" alt="sort" class="sort" />
+        </div>
+      </transition>
+
+      <!-- 登陆按钮 -->
+      <transition
+        name="zoom-in-left"
+        enter-active-class="animate__animated animate__zoomInUp"
+        leave-active-class="animate__animated animate__zoomOutRight"
+      >
+        <div v-show="isOnComputer && show" class="User">
+          <AccountButton text="登陆" />
+          <AccountButton text="注册" />
+          <ThemeSwitch style="transform: scale(0.6); margin-left: 80px" />
+        </div>
+      </transition>
     </div>
-    <div v-show="!isOnComputer" class="phoneButton">
-      <div class="LogContent">
-        <HomeButton
-          :isColorReversed="false"
-          description="Log In"
-          where="/login"
-        />
-        <HomeButton
-          :isColorReversed="true"
-          description="Sign Up"
-          where="/register"
+
+    <!-- 下面的都是在手机上显示的东西 ==> v-show="!isOnComputer" -->
+    <transition
+      name="zoomIn"
+      enter-active-class="animate__animated animate__zoomIn"
+    >
+      <div v-show="!isOnComputer && show" class="phoneButton">
+        <div class="LogContent">
+          <HomeButton
+            :isColorReversed="false"
+            description="Log In"
+            where="/login"
+          />
+          <HomeButton
+            :isColorReversed="true"
+            description="Sign Up"
+            where="/register"
+          />
+        </div>
+        <img
+          class="smile"
+          v-show="!isOnComputer"
+          src="@/assets/svg/smile.svg"
+          alt="smile"
         />
       </div>
-      <img
-        class="smile"
-        v-show="!isOnComputer"
-        src="@/assets/svg/smile.svg"
-        alt="smile"
-      />
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -48,12 +88,14 @@
 import VideoTemplate from "@/components/group/movieHome/navigationBar/VideoTemplate.vue";
 import AccountButton from "@/components/group/movieHome/navigationBar/AccountButton.vue";
 import HomeButton from "@/components/button/HomeButton.vue";
+import ThemeSwitch from "@/components/button/ThemeSwitch.vue";
 export default {
   props: ["isOnComputer"],
   components: {
     VideoTemplate,
     AccountButton,
     HomeButton,
+    ThemeSwitch,
   },
   data() {
     return {
@@ -67,12 +109,16 @@ export default {
           title: "影片",
         },
       ],
+      show: false,
     };
   },
   methods: {
     goHome() {
       this.$router.push("/");
     },
+  },
+  mounted() {
+    this.show = true;
   },
 };
 </script>
@@ -95,7 +141,7 @@ export default {
       filter: hue-rotate(10deg) brightness(150%) saturate(120%);
     }
     @media (max-width: 900px) {
-      width: 40px;
+      width: 60px;
       margin-left: -20px;
       margin-top: -40px;
     }
@@ -105,7 +151,9 @@ export default {
   @include gridCenter(3);
   gap: 16px;
   @media (max-width: 900px) {
-    gap: 10px;
+    gap: 0;
+    margin-left: -80px;
+    margin-top: 100px;
   }
 }
 .input {
@@ -153,8 +201,8 @@ export default {
   }
 }
 .User {
-  @include gridCenter(2);
-  gap: 20px;
+  @include gridCenter(3);
+  gap: 10px;
 }
 .phoneButton {
   position: relative;

@@ -29,17 +29,20 @@ export default {
     if (document.body.clientWidth <= 900) {
       this.isOnComputer = false;
     }
-    console.log(this.isOnComputer);
   },
   data() {
     return {
       isOnComputer: true,
-      isDarkMode: this.$store.getters.isDarkMode,
     };
   },
   methods: {
     toggleDarkMode() {
       this.$store.commit("toggleDarkMode");
+    },
+  },
+  computed: {
+    isDarkMode() {
+      return this.$store.getters.isDarkMode;
     },
   },
 };
@@ -49,6 +52,7 @@ export default {
 @import "@/global-styles/mixin.scss";
 @import "@/global-styles/colors.scss";
 @import "@/global-styles/typography.scss";
+
 .light-background {
   background: $light-gray;
 }

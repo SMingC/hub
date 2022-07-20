@@ -17,7 +17,6 @@ import FooterSingleVideo from "@/components/group/movieHome/footer/FooterSingleV
 export default {
   components: {
     DescriptionVideo,
-
     FooterSingleVideo,
   },
 };

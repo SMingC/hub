@@ -4,10 +4,11 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 // Initial State
-const userSelectedDarkMode = window.localStorage.getItem("isDarkMode") === true;
+const userSelectedDarkMode =
+  window.localStorage.getItem("isDarkMode") === "true";
 
 const state = {
-  isDarkMode: false,
+  isDarkMode: userSelectedDarkMode,
 };
 
 // Getters
@@ -20,8 +21,13 @@ const getters = {
 // Mutations
 const mutations = {
   toggleDarkMode(state) {
-    state.isDarkMode = !state.isDarkMode;
-    window.localStorage.setItem("isDarkMode", state.isDarkMode);
+    if (state.isDarkMode === true) {
+      state.isDarkMode = false;
+      window.localStorage.setItem("isDarkMode", "false");
+    } else {
+      state.isDarkMode = true;
+      window.localStorage.setItem("isDarkMode", "true");
+    }
   },
 };
 
