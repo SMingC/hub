@@ -90,6 +90,14 @@
               >团队</router-link
             ></el-menu-item
           >
+          <el-menu-item index="2-4">
+            <router-link
+              to="/signin"
+              :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+              class="buttonHover"
+              >登陆/注册</router-link
+            ></el-menu-item
+          >
         </el-submenu>
       </el-menu>
     </div>
