@@ -37,7 +37,18 @@
       >
         <div v-show="isOnComputer && show" class="input">
           <input type="text" class="search" />
-          <img src="@/assets/icons/sort.svg" alt="sort" class="sort" />
+          <img
+            v-if="isDarkMode"
+            src="@/assets/icons/sort.svg"
+            alt="sort"
+            class="sort"
+          />
+          <img
+            v-else
+            src="@/assets/icons/search-dark.svg"
+            alt="sort"
+            class="sort"
+          />
         </div>
       </transition>
 
@@ -48,8 +59,8 @@
         leave-active-class="animate__animated animate__zoomOutRight"
       >
         <div v-show="isOnComputer && show" class="User">
-          <AccountButton text="登陆" />
-          <AccountButton text="注册" />
+          <AccountButton text="登陆" where="/signin" />
+          <AccountButton text="注册" where="/signin" />
           <ThemeSwitch style="transform: scale(0.7); margin-left: 80px" />
         </div>
       </transition>
@@ -117,6 +128,11 @@ export default {
       this.$router.push("/");
     },
   },
+  computed: {
+    isDarkMode() {
+      return this.$store.getters.isDarkMode;
+    },
+  },
   mounted() {
     this.show = true;
   },
@@ -175,9 +191,10 @@ export default {
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(40px);
     border-radius: 30px;
-    height: 30px;
+    height: 40px;
     width: 300px;
     padding-left: 20px;
+    margin-top: -5px;
 
     font-family: "SF Pro Text";
     font-style: normal;

@@ -1,15 +1,16 @@
 <template>
-  <div
+  <router-link
+    :to="where"
     :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
     class="log"
   >
     {{ text }}
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
-  props: ["text"],
+  props: ["text", "where"],
   computed: {
     isDarkMode() {
       return this.$store.getters.isDarkMode;

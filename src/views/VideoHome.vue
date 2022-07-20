@@ -30,6 +30,7 @@ export default {
       this.isOnComputer = false;
     }
   },
+
   data() {
     return {
       isOnComputer: true,
@@ -58,7 +59,5 @@ export default {
 }
 .dark-background {
   background: $dark-blue;
-}
-.videoTopWrapper {
 }
 </style>

@@ -4,7 +4,7 @@
       <div id="LeftWrapper">
         <div id="TopWrapper">
           <img id="fk1" src="@/assets/svg/pc1.svg" />
-          Hey,Welcomeee
+          Hey,Welcome
         </div>
         <div id="ACenWrapper">关于NCHU_200hub</div>
         <div id="BCenWrapper">412 x 413 勉强打造</div>
