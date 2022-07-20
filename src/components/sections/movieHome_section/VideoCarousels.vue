@@ -1,6 +1,6 @@
 <template>
   <div class="videoWrapper">
-    <ShowCard :isOnComputer="isOnComputer" />
+    <ShowCard :isOnComputer="isOnComputer" class="OpAnimate" />
     <DescriptionVideo text="popular" />
     <PopularCards />
   </div>
@@ -32,6 +32,9 @@ export default {
   padding: 40px;
   @media (max-width: 900px) {
     padding: 20px;
+  }
+  .OpAnimate {
+    @include OpAnimate(0.2s);
   }
 }
 </style>

@@ -1,3 +1,15 @@
+@keyframes Op {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+    filter: blur(0px);
+  }
+}
 @mixin buttonDefault {
   font-family: "Space Grotesk";
   font-style: normal;
@@ -52,4 +64,9 @@
   grid-template-rows: repeat($repeat, auto);
   align-items: center;
   justify-items: start;
+}
+@mixin OpAnimate($duration: 0.2s) {
+  opacity: 0;
+  animation: Op 1s forwards;
+  animation-delay: $duration;
 }

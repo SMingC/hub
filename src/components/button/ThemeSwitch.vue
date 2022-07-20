@@ -8,8 +8,8 @@
       class="toggle-switch"
       :class="{ 'toggle-left': !isDarkMode, 'toggle-right': isDarkMode }"
     >
-      <img v-if="!isDarkMode" src="@/assets/icons/sun.svg" />
-      <img v-if="isDarkMode" src="@/assets/icons/moon.svg" />
+      <img class="toggleIcon" v-if="!isDarkMode" src="@/assets/icons/sun.svg" />
+      <img class="toggleIcon" v-if="isDarkMode" src="@/assets/icons/moon.svg" />
     </div>
   </div>
 </template>
@@ -34,6 +34,9 @@ export default {
 .toggle {
   border-radius: 10px;
   width: 175px;
+  @media (max-width: 900px) {
+    width: 135px;
+  }
   box-sizing: border-box;
   display: flex;
   cursor: pointer;
@@ -55,6 +58,10 @@ export default {
   margin: 2px;
   padding: 15px 35px;
   border-radius: 8px;
+  @media (max-width: 900px) {
+    padding: 10px 28px;
+    margin: 1px;
+  }
 }
 
 .toggle-left {
@@ -67,5 +74,10 @@ export default {
   transform: translateX(92%);
   background: #1b233f;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.toggleIcon {
+  @media (max-width: 900px) {
+    width: 12px;
+  }
 }
 </style>

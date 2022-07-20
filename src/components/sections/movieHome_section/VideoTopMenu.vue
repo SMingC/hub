@@ -26,7 +26,7 @@
           <div v-for="(icon, index) in icons" :key="index">
             <VideoTemplate :url="icon.url" :title="icon.title" />
           </div>
-          <ThemeSwitch v-show="!isOnComputer" style="transform: scale(0.6)" />
+          <ThemeSwitch v-show="!isOnComputer" />
         </div>
       </transition>
 
@@ -50,7 +50,7 @@
         <div v-show="isOnComputer && show" class="User">
           <AccountButton text="登陆" />
           <AccountButton text="注册" />
-          <ThemeSwitch style="transform: scale(0.6); margin-left: 80px" />
+          <ThemeSwitch style="transform: scale(0.7); margin-left: 80px" />
         </div>
       </transition>
     </div>
@@ -129,8 +129,9 @@ export default {
   @include gridStart(4);
   @media (max-width: 900px) {
     @include gridStart(2);
+    grid-template-columns: auto;
     grid-template-rows: auto auto;
-    gap: 30px;
+    padding: 0;
   }
   padding: 20px;
   .icon {
@@ -142,18 +143,14 @@ export default {
     }
     @media (max-width: 900px) {
       width: 60px;
-      margin-left: -20px;
-      margin-top: -40px;
     }
   }
 }
 .menuButtons {
   @include gridCenter(3);
-  gap: 16px;
+  padding: 20px 0;
+  animation-delay: 0.2s;
   @media (max-width: 900px) {
-    gap: 0;
-    margin-left: -80px;
-    margin-top: 100px;
   }
 }
 .input {
@@ -203,6 +200,7 @@ export default {
 .User {
   @include gridCenter(3);
   gap: 10px;
+  animation-delay: 0.6s;
 }
 .phoneButton {
   position: relative;

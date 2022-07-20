@@ -1,11 +1,14 @@
 <template>
   <div class="centerCards">
-    <CenterLeftCard
-      :url="textLeftCard.url"
-      :description="textLeftCard.description"
-      :content="textLeftCard.content"
-      :stared="true"
-    />
+    <transition appear appear-active-class="animate__animated animate__flipInX">
+      <CenterLeftCard
+        :url="textLeftCard.url"
+        :description="textLeftCard.description"
+        :content="textLeftCard.content"
+        :stared="true"
+        style="animation-delay: 1s"
+      />
+    </transition>
     <div class="LoopCards">
       <div v-for="(item, index) in 4" :key="index">
         <CenterRightCards
