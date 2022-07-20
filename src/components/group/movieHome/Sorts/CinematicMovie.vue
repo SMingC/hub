@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 .cinematicWrapper {
   margin-top: -100px;
   padding: 50px;

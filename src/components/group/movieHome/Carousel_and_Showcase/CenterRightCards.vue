@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 .CenterRightCards {
   .rightCardsContent {
     @include gridCenter(2);

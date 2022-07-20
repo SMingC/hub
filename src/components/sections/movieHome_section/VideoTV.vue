@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 .tvCardsWrapper {
   .tvCardsContent {
     @include gridRowsStart(2);

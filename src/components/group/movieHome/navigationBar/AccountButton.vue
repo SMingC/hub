@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 .log {
   font-family: "LingWai SC";
   font-style: normal;

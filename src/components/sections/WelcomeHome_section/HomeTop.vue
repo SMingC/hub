@@ -129,7 +129,7 @@ export default {
     margin-top: 180px;
   }
 }
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 @keyframes Op {
   from {
     opacity: 0;

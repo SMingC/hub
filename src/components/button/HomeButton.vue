@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import "@/assets/css/layout.scss";
+import "@/global-styles/mixin.scss";
 export default {
   name: "HomeButton",
   props: ["isColorReversed", "description", "where"],
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 .HomeButton {
   :hover {
     .PurpleTangle {

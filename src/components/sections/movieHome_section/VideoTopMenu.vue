@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
 .videoContentWrapper {
   @include gridStart(4);
   @media (max-width: 900px) {

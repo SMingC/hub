@@ -1,5 +1,8 @@
 <template>
-  <div class="videoTopWrapper">
+  <div
+    class="videoTopWrapper"
+    :class="{ 'light-background': !isDarkMode, 'dark-background': isDarkMode }"
+  >
     <VideoTopMenu :isOnComputer="isOnComputer" />
     <VideoCarousels :isOnComputer="isOnComputer" />
     <VideoTV :isOnComputer="isOnComputer" />
@@ -31,19 +34,27 @@ export default {
   data() {
     return {
       isOnComputer: true,
+      isDarkMode: this.$store.getters.isDarkMode,
     };
+  },
+  methods: {
+    toggleDarkMode() {
+      this.$store.commit("toggleDarkMode");
+    },
   },
 };
 </script>
 
 <style lang="scss" scopde>
-@import "@/assets/css/layout.scss";
+@import "@/global-styles/mixin.scss";
+@import "@/global-styles/colors.scss";
+@import "@/global-styles/typography.scss";
+.light-background {
+  background: $light-gray;
+}
+.dark-background {
+  background: $dark-blue;
+}
 .videoTopWrapper {
-  background: linear-gradient(
-    114.23deg,
-    #594444 14.64%,
-    rgba(0, 0, 0, 0.7) 47.07%,
-    #475f66 80.65%
-  );
 }
 </style>
