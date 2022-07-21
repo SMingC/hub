@@ -3,6 +3,7 @@
     class="videoTopWrapper"
     :class="{ 'light-background': !isDarkMode, 'dark-background': isDarkMode }"
   >
+    <Header />
     <VideoTopMenu :isOnComputer="isOnComputer" />
     <VideoCarousels :isOnComputer="isOnComputer" />
     <VideoTV :isOnComputer="isOnComputer" />
@@ -17,6 +18,8 @@ import VideoCarousels from "@/components/sections/movieHome_section/VideoCarouse
 import VideoTV from "@/components/sections/movieHome_section/VideoTV.vue";
 import AllSortsVideo from "@/components/sections/movieHome_section/AllSortsVideo.vue";
 import FooterVideoHome from "@/components/group/movieHome/footer/FooterVideoHome.vue";
+import Header from "@/components/Headers/Header.vue";
+
 export default {
   components: {
     VideoTopMenu,
@@ -24,6 +27,7 @@ export default {
     AllSortsVideo,
     VideoTV,
     FooterVideoHome,
+    Header,
   },
   created() {
     const params = this.$route.params;

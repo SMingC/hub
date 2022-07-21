@@ -1,73 +1,6 @@
 <template>
   <!-- transition => animate.css库 -->
-
-  <div class="Wrap">
-    <div class="videoContentWrapper">
-      <!-- icon -->
-      <transition
-        name="rubberBand"
-        enter-active-class="animate__animated animate__rubberBand "
-      >
-        <img
-          v-show="show"
-          class="icon"
-          src="@/assets/icons/icon.svg"
-          alt="icon"
-          @click="goHome"
-        />
-      </transition>
-
-      <!-- 导航按钮 -->
-      <transition
-        name="zoomInUp"
-        enter-active-class="animate__animated animate__zoomInUp"
-      >
-        <div v-show="show" class="menuButtons">
-          <div v-for="(icon, index) in icons" :key="index">
-            <VideoTemplate :url="icon.url" :title="icon.title" />
-          </div>
-          <ThemeSwitch v-show="!isOnComputer" />
-        </div>
-      </transition>
-
-      <!-- 搜索框 -->
-      <transition
-        name="light-speed"
-        enter-active-class="animate__animated animate__lightSpeedInLeft"
-      >
-        <div v-show="isOnComputer && show" class="input">
-          <input type="text" class="search" />
-          <img
-            v-if="isDarkMode"
-            src="@/assets/icons/sort.svg"
-            alt="sort"
-            class="sort"
-          />
-          <img
-            v-else
-            src="@/assets/icons/search-dark.svg"
-            alt="sort"
-            class="sort"
-          />
-        </div>
-      </transition>
-
-      <!-- 登陆按钮 -->
-      <transition
-        name="zoom-in-left"
-        enter-active-class="animate__animated animate__zoomInUp"
-        leave-active-class="animate__animated animate__zoomOutRight"
-      >
-        <div v-show="isOnComputer && show" class="User">
-          <AccountButton v-if="!hasLogin" text="👾 登陆" where="/signin" />
-          <div v-else @click="onClick">
-            <AccountButton text="退出登陆👋🏿" where="" />
-          </div>
-          <ThemeSwitch style="transform: scale(0.7); margin-left: 80px" />
-        </div>
-      </transition>
-    </div>
-
+  <div v-show="!isOnComputer" class="Wrap">
     <!-- 下面的都是在手机上显示的东西 ==> v-show="!isOnComputer" -->
     <transition
       name="zoomIn"
@@ -79,13 +12,13 @@
             v-show="!hasLogin"
             :isColorReversed="false"
             description="Log In"
-            where="/login"
+            where="/signin"
           />
           <HomeButton
             v-show="!hasLogin"
             :isColorReversed="true"
             description="Sign Up"
-            where="/register"
+            where="/signin"
           />
           <div
             v-show="hasLogin"
@@ -124,37 +57,12 @@ export default {
   data() {
     return {
       hasLogin: false,
-      icons: [
-        {
-          url: require("@/assets/icons/home.svg"),
-          title: "首页",
-        },
-        {
-          url: require("@/assets/icons/videos.svg"),
-          title: "影片",
-        },
-      ],
       show: false,
     };
   },
   methods: {
     goHome() {
       this.$router.push("/");
-    },
-    onClick() {
-      const user = auth.currentUser();
-      sessionStorage.clear();
-
-      user.logout().then((res) => {
-        this.$router
-          .push({
-            name: "signin",
-            params: { userLoggedOut: true },
-          })
-          .catch((err) => {
-            console.error("===logOutErr===", err);
-          });
-      });
     },
   },
   computed: {
