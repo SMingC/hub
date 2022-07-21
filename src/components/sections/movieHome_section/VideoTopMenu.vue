@@ -59,8 +59,10 @@
         leave-active-class="animate__animated animate__zoomOutRight"
       >
         <div v-show="isOnComputer && show" class="User">
-          <AccountButton text="登陆" where="/signin" />
-          <AccountButton text="注册" where="/signin" />
+          <AccountButton v-if="!hasLogin" text="👾 登陆" where="/signin" />
+          <div v-else @click="onClick">
+            <AccountButton text="退出登陆👋🏿" where="" />
+          </div>
           <ThemeSwitch style="transform: scale(0.7); margin-left: 80px" />
         </div>
       </transition>
@@ -69,26 +71,36 @@
     <!-- 下面的都是在手机上显示的东西 ==> v-show="!isOnComputer" -->
     <transition
       name="zoomIn"
-      enter-active-class="animate__animated animate__zoomIn"
+      enter-active-class="animate__animated animate__zoomInDown"
     >
       <div v-show="!isOnComputer && show" class="phoneButton">
         <div class="LogContent">
           <HomeButton
+            v-show="!hasLogin"
             :isColorReversed="false"
             description="Log In"
             where="/login"
           />
           <HomeButton
+            v-show="!hasLogin"
             :isColorReversed="true"
             description="Sign Up"
             where="/register"
           />
+          <div
+            v-show="hasLogin"
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="loginText"
+          >
+            Welcome NCHU_200hub!🥳
+          </div>
         </div>
         <img
           class="smile"
           v-show="!isOnComputer"
           src="@/assets/svg/smile.svg"
           alt="smile"
+          :class="{ moretop: hasLogin }"
         />
       </div>
     </transition>
@@ -100,6 +112,7 @@ import VideoTemplate from "@/components/group/movieHome/navigationBar/VideoTempl
 import AccountButton from "@/components/group/movieHome/navigationBar/AccountButton.vue";
 import HomeButton from "@/components/button/HomeButton.vue";
 import ThemeSwitch from "@/components/button/ThemeSwitch.vue";
+import { auth } from "@/main";
 export default {
   props: ["isOnComputer"],
   components: {
@@ -110,6 +123,7 @@ export default {
   },
   data() {
     return {
+      hasLogin: false,
       icons: [
         {
           url: require("@/assets/icons/home.svg"),
@@ -127,6 +141,21 @@ export default {
     goHome() {
       this.$router.push("/");
     },
+    onClick() {
+      const user = auth.currentUser();
+      sessionStorage.clear();
+
+      user.logout().then((res) => {
+        this.$router
+          .push({
+            name: "signin",
+            params: { userLoggedOut: true },
+          })
+          .catch((err) => {
+            console.error("===logOutErr===", err);
+          });
+      });
+    },
   },
   computed: {
     isDarkMode() {
@@ -136,11 +165,26 @@ export default {
   mounted() {
     this.show = true;
   },
+  created() {
+    if (sessionStorage.getItem("email") !== null) {
+      this.hasLogin = true;
+    }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
+@import "@/global-styles/colors.scss";
+@import "@/global-styles/typography.scss";
+.loginText {
+  font-family: "HanziPen SC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 70px;
+  text-align: center;
+}
 .videoContentWrapper {
   @include gridStart(4);
   @media (max-width: 900px) {
@@ -215,7 +259,7 @@ export default {
   }
 }
 .User {
-  @include gridCenter(3);
+  @include gridCenter(2);
   gap: 10px;
   animation-delay: 0.6s;
 }
@@ -237,6 +281,9 @@ export default {
     width: 150px;
     left: 100px;
     top: 120px;
+  }
+  .moretop {
+    top: 250px;
   }
 }
 </style>

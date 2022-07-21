@@ -2,11 +2,11 @@
   <div class="AboutWrapper">
     <div class="AboutContent">
       <div class="aboutTop">
-        <router-link to="search" class="search">
+        <router-link to="/signin" class="search">
           <img src="@/assets/svg/search.svg" alt="search" />
           <div class="signText">注册</div>
         </router-link>
-        <router-link to="/login" class="signIn">
+        <router-link to="/signin" class="signIn">
           <img src="@/assets/svg/user.svg" alt="user" />
           <div class="signText">登陆</div>
         </router-link>

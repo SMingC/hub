@@ -33,7 +33,7 @@ export default {
   font-weight: 500;
   font-size: 32px;
   line-height: 45px;
-  padding: 5px 50px;
+  padding: 5px 20px;
   &:hover {
     @include hoverButtom;
     cursor: pointer;

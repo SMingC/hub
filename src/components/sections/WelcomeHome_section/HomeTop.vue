@@ -4,15 +4,38 @@
     <div class="ContentWrapper">
       <div class="description">
         <div class="spring">多少游春意 🔥</div>
-        <div class="intersting">
+        <div
+          :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+          class="intersting"
+        >
           Something <br />
           Interesting
         </div>
         <div class="poem">
-          <div class="poemText">寸心誓与长相守</div>
-          <div class="poemText">止华凄冷蓼花愁</div>
-          <div class="poemText">挑尽寒灯到夜深</div>
-          <div class="poemText">战和何者是良筹</div>
+          <div
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="poemText"
+          >
+            寸心誓与长相守
+          </div>
+          <div
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="poemText"
+          >
+            止华凄冷蓼花愁
+          </div>
+          <div
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="poemText"
+          >
+            挑尽寒灯到夜深
+          </div>
+          <div
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="poemText"
+          >
+            战和何者是良筹
+          </div>
         </div>
         <div v-show="isOnComputer" class="HomeButtonWrapper">
           <HomeButton
@@ -23,7 +46,7 @@
           <HomeButton
             :isColorReversed="true"
             description="关于我们"
-            where="/about"
+            where="/team"
           />
         </div>
       </div>
@@ -39,12 +62,17 @@
         v-show="!isOnComputer"
         :isColorReversed="true"
         description="关于我们"
-        where="/about"
+        where="/team"
         class="onPhonButton"
       />
     </div>
     <div class="CardsWrapper">
-      <div class="cardTitle">TEAM sofar...</div>
+      <div
+        :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+        class="cardTitle"
+      >
+        TEAM sofar...
+      </div>
       <div class="Cards">
         <CartoonCard
           v-for="(card, index) in cartoonUrls[0].cartoonCardsCollection.items"
@@ -71,6 +99,11 @@ export default {
       cartoonUrls: [],
       isOnComputer: true,
     };
+  },
+  computed: {
+    isDarkMode() {
+      return this.$store.getters.isDarkMode;
+    },
   },
   async created() {
     this.cartoonUrls = await this.getcartoonUrl();
@@ -120,6 +153,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/global-styles/colors.scss";
+@import "@/global-styles/typography.scss";
 .onPhonButton {
   transform: scale(0.8);
   margin-top: 40px;
@@ -208,7 +243,6 @@ export default {
         font-weight: 700;
         font-size: 58px;
         line-height: 58px;
-        color: #030f26;
         animation: Op 1s forwards;
         animation-delay: 0.4s;
         opacity: 0;
@@ -242,7 +276,6 @@ export default {
           font-weight: 400;
           font-size: 24px;
           line-height: 46px;
-          color: #030f26;
           &:hover {
             cursor: defalut;
             transform: translateX(20px);
@@ -281,7 +314,6 @@ export default {
       font-size: 40px;
       line-height: 58px;
       letter-spacing: 0.5px;
-      color: #030f26;
       @media (max-width: 900px) {
         font-size: 20px;
       }

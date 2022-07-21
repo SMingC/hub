@@ -1,9 +1,17 @@
 <template>
   <div class="Team">
     <img :src="url" alt="teamAll" />
-    <div class="NamesTangle">
+    <div
+      :class="{ 'light-tangle': isDarkMode, 'dark-tangle': !isDarkMode }"
+      class="NamesTangle"
+    >
       <div class="Names">
-        <div v-for="(name, index) in names" :key="index" class="name">
+        <div
+          :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+          v-for="(name, index) in names"
+          :key="index"
+          class="name"
+        >
           {{ name }}
         </div>
       </div>
@@ -26,6 +34,11 @@ export default {
     return {
       names: ["MCS", "MHW", "ZZT"],
     };
+  },
+  computed: {
+    isDarkMode() {
+      return this.$store.getters.isDarkMode;
+    },
   },
 };
 </script>
@@ -87,10 +100,14 @@ export default {
     transform: scale(1.1) translateY(-20px);
     filter: hue-rotate(10deg) brightness(150%) saturate(120%);
   }
-
+  .light-tangle {
+    border: 4px solid #ffffff;
+  }
+  .dark-tangle {
+    border: 4px solid #030f26;
+  }
   .NamesTangle {
     width: 630px;
-    border: 4px solid #030f26;
     padding: 10px;
     &:hover {
       transform: scale(1.1);
@@ -111,7 +128,6 @@ export default {
       font-size: 27px;
       line-height: 27px;
       text-transform: uppercase;
-      color: #030f26;
     }
   }
 }

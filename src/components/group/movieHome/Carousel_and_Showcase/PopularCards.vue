@@ -11,12 +11,18 @@
     </transition>
     <div class="LoopCards">
       <div v-for="(item, index) in 4" :key="index">
-        <CenterRightCards
-          :url="textRightCard.url"
-          :description="textRightCard.description"
-          :content="textRightCard.content"
-          :stared="true"
-        />
+        <transition
+          appear
+          appear-active-class="animate__animated animate__zoomInUp"
+        >
+          <CenterRightCards
+            :url="textRightCard.url"
+            :description="textRightCard.description"
+            :content="textRightCard.content"
+            :stared="true"
+            :style="{ 'animation-delay': index / 2 + 's' }"
+          />
+        </transition>
       </div>
     </div>
   </div>

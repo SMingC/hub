@@ -63,3 +63,15 @@ $system-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   font-weight: bold;
   color: $color;
 }
+
+#pop {
+  background: rgba(52, 58, 65, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

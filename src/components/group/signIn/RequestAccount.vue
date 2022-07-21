@@ -8,8 +8,8 @@
       class="request"
       :class="{ 'light-request': isDarkMode, 'dark-request': !isDarkMode }"
     >
-      Don't have a Design+Code HQ account?
-      <router-link to="/request">Request an account</router-link>
+      你还没有 NCHU200hub 的账号??🤷🏻‍♀️🤷🏻🤷🏽‍♂️🤷🏻‍♀️
+      <router-link to="/request">那就浅注册一个吧</router-link>
     </div>
   </transition>
 </template>
@@ -40,10 +40,6 @@ export default {
   position: absolute;
   top: 40px;
   right: 40px;
-
-  @media all and (max-width: 767px) {
-    display: none;
-  }
 }
 
 .light-request {

@@ -42,10 +42,16 @@ export default {
   .PurpleTangle {
     @include buttonDefault;
     background: #5400dc;
+    @media (max-width: 900px) {
+      font-size: 16px !important;
+    }
   }
   .BlackTangle {
     @include buttonDefault;
     background: #75e0e6;
+    @media (max-width: 900px) {
+      font-size: 16px !important;
+    }
   }
 }
 </style>

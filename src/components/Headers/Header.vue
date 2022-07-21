@@ -29,28 +29,39 @@
       <router-link
         to="/"
         :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-        class="buttonHover"
-        >首页</router-link
+        class="buttonHover modeText"
+        >🏠 首页</router-link
       >
       <router-link
         to="/video"
         :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-        class="buttonHover"
-        >观看影片</router-link
+        class="buttonHover modeText"
+        >🥵 开冲</router-link
       >
       <router-link
         to="/team"
         :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-        class="buttonHover"
-        >团队</router-link
+        class="buttonHover modeText"
+        >👩🏼‍🤝‍👨🏿 团队</router-link
       >
+      <router-link
+        v-if="!hasLogin"
+        to="/signin"
+        :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+        class="buttonHover modeText"
+        >🎢 登陆·注册</router-link
+      >
+      <a
+        v-else
+        :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+        class="buttonHover modeText"
+        style="cursor: pointer"
+        @click="logOut"
+      >
+        退出登录👋🏿
+      </a>
     </div>
     <div v-show="!isOnComputer" style="position: relative">
-      <!-- <router-link to="signin" class="dengl">
-        <img v-if="isDarkMode" src="@/assets/svg/login.svg" />
-        <img v-else src="@/assets/svg/login-dark.svg" />
-      </router-link> -->
-      <!-- <img src="@/assets/icons/Menu.svg" alt="menu" style="width: 80px" /> -->
       <el-menu
         :default-active="activeIndex"
         class="el-menu-demo"
@@ -64,39 +75,62 @@
           <template slot="title">
             <img src="@/assets/svg/lines.svg" alt="liens"
           /></template>
-          <el-menu-item index="2-1">
+          <el-menu-item index="1-1">
             <div style="buger">
               <router-link
                 to="/"
-                :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-                class="buttonHover"
-                >首页
+                :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+                class="buttonHover modeText"
+                >🏠 首页
               </router-link>
             </div></el-menu-item
           >
-          <el-menu-item index="2-2">
+          <el-menu-item index="1-2">
             <router-link
               to="/video"
-              :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-              class="buttonHover"
-              >观看影片</router-link
+              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+              class="buttonHover modeText"
+              >🥵 开冲</router-link
             ></el-menu-item
           >
-          <el-menu-item index="2-3">
+          <el-menu-item index="1-3">
             <router-link
               to="/team"
-              :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-              class="buttonHover"
-              >团队</router-link
+              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+              class="buttonHover modeText"
+              >👩🏼‍🤝‍👨🏿 团队</router-link
             ></el-menu-item
           >
-          <el-menu-item index="2-4">
+          <el-menu-item index="1-4">
             <router-link
+              v-if="!hasLogin"
               to="/signin"
-              :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
-              class="buttonHover"
-              >登陆/注册</router-link
-            ></el-menu-item
+              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+              class="buttonHover modeText"
+              >🎢 登陆·注册</router-link
+            >
+            <div
+              v-else
+              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+              class="buttonHover modeText"
+              @click="logOut"
+            >
+              退出登录👋🏿
+            </div>
+          </el-menu-item>
+          <el-menu-item index="1-5">
+            <div
+              to="/signin"
+              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+              class="buttonHover modeText"
+              @click="
+                () => {
+                  this.$store.commit('toggleDarkMode');
+                }
+              "
+            >
+              💡 贤者模式 {{ !isDarkMode ? "关😇" : "开😍" }}
+            </div></el-menu-item
           >
         </el-submenu>
       </el-menu>
@@ -107,6 +141,7 @@
 
 <script>
 import ThemeSwitch from "@/components/button/ThemeSwitch.vue";
+import { auth } from "@/main";
 export default {
   name: "Header",
   components: { ThemeSwitch },
@@ -118,12 +153,33 @@ export default {
   data() {
     return {
       isOnComputer: true,
+      hasLogin: false,
     };
   },
   created() {
     if (document.body.clientWidth < 900) {
       this.isOnComputer = false;
     }
+    if (sessionStorage.getItem("email") !== null) {
+      this.hasLogin = true;
+    }
+  },
+  methods: {
+    logOut() {
+      const user = auth.currentUser();
+      sessionStorage.clear();
+
+      user.logout().then((res) => {
+        this.$router
+          .push({
+            name: "signin",
+            params: { userLoggedOut: true },
+          })
+          .catch((err) => {
+            console.error("===logOutErr===", err);
+          });
+      });
+    },
   },
 };
 </script>
@@ -136,7 +192,19 @@ export default {
   padding: 10px;
   &:hover {
     @include hoverButtom;
+    transform: scale(1.1);
   }
+}
+.modeText {
+  font-family: "HanziPen SC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  @media (max-width: 900px) {
+    font-size: 10px;
+  }
+  line-height: 22px;
+  color: black;
 }
 .dengl {
   @include gridCenter(2);

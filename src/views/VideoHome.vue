@@ -26,8 +26,12 @@ export default {
     FooterVideoHome,
   },
   created() {
+    const params = this.$route.params;
     if (document.body.clientWidth <= 900) {
       this.isOnComputer = false;
+    }
+    if (params.hasLogin) {
+      this.hasLogin = true;
     }
   },
 

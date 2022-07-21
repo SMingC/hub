@@ -8,7 +8,12 @@
           <div class="card-front-top">
             <img style="width: 300px; height: 200px" :src="url" alt="img" />
           </div>
-          <div class="card-front-bot">{{ name }}</div>
+          <div
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="card-front-bot"
+          >
+            {{ name }}
+          </div>
         </div>
         <!-- 反面 -->
         <div class="card-back">
@@ -19,11 +24,24 @@
     <!-- 封底 -->
     <div class="card-inside">
       <div class="card-inside-container">
-        <div class="movieTitle">{{ name }}</div>
-        <div class="movieDescription">
+        <div
+          :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+          class="movieTitle"
+        >
+          {{ name }}
+        </div>
+        <div
+          :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+          class="movieDescription"
+        >
           {{ description }}
         </div>
-        <div class="watchButton">点击观看</div>
+        <div
+          :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+          class="watchButton"
+        >
+          点击观看
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +53,11 @@ export default {
   methods: {
     goWatch() {
       this.$router.push(this.where);
+    },
+  },
+  computed: {
+    isDarkMode() {
+      return this.$store.getters.isDarkMode;
     },
   },
 };
@@ -118,7 +141,6 @@ export default {
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  color: #ffffff;
   text-align: center;
 }
 .card-back {
@@ -147,7 +169,6 @@ export default {
     font-size: 25px;
     line-height: 28px;
     text-align: justify;
-    color: #ffffff;
   }
   .movieDescription {
     font-family: "Hannotate SC";
@@ -155,7 +176,6 @@ export default {
     font-weight: 400;
     font-size: 18px;
     line-height: 25px;
-    color: #ffffff;
   }
   .watchButton {
     padding: 10px 30px;
