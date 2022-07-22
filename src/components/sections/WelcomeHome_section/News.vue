@@ -79,7 +79,7 @@ export default {
       } else {
         this.$refs.cookCard.goBack();
       }
-      console.log(this.currentScroll, this.$refs.pick.offsetTop - 900);
+      // console.log(this.currentScroll, this.$refs.pick.offsetTop - 900);
       if (document.body.clientWidth <= 900) {
         if (
           this.currentScroll >= this.$refs.pick.offsetTop - 1400 &&

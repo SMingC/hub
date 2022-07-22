@@ -61,79 +61,66 @@
         退出登录👋🏿
       </a>
     </div>
-    <div v-show="!isOnComputer" style="position: relative">
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        style="transform: scale(0.8); border-radius: 200px"
-      >
-        <el-submenu
-          index="1"
-          style="transform: scale(0.7); border-radius: 200px"
+    <div v-show="!isOnComputer">
+      <div class="phone">
+        <div
+          :class="{ menuWrapper: !isDarkMode, 'menuWrapper-dark': isDarkMode }"
+          @click="changeOpen"
         >
-          <template slot="title">
-            <img src="@/assets/svg/lines.svg" alt="liens"
-          /></template>
-          <el-menu-item index="1-1">
-            <div style="buger">
-              <router-link
-                to="/"
-                :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
-                class="buttonHover modeText"
-                >🏠 首页
-              </router-link>
-            </div></el-menu-item
+          <img v-show="!isDarkMode" src="@/assets/svg/lines.svg" alt="menu" />
+          <img
+            v-show="isDarkMode"
+            src="@/assets/svg/lines-light.svg"
+            alt="menu"
+          />
+        </div>
+        <div
+          class="phoneMenuWrapper"
+          :class="{ 'show-visibale': isOpen, 'show-hidden': !isOpen }"
+        >
+          <router-link
+            to="/"
+            :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+            class="modeText"
+            >🏠 首页</router-link
           >
-          <el-menu-item index="1-2">
-            <router-link
-              to="/video"
-              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
-              class="buttonHover modeText"
-              >🥵 开冲</router-link
-            ></el-menu-item
+          <router-link
+            to="/video"
+            :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+            class="modeText"
+            >🥵 开冲</router-link
           >
-          <el-menu-item index="1-3">
-            <router-link
-              to="/team"
-              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
-              class="buttonHover modeText"
-              >👩🏼‍🤝‍👨🏿 团队</router-link
-            ></el-menu-item
+          <router-link
+            to="/team"
+            :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+            class="modeText"
+            >👩🏼‍🤝‍👨🏿 团队</router-link
           >
-          <el-menu-item index="1-4">
-            <router-link
-              v-if="!hasLogin"
-              to="/signin"
-              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
-              class="buttonHover modeText"
-              >🎢 登陆·注册</router-link
-            >
-            <div
-              v-else
-              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
-              class="buttonHover modeText"
-              @click="logOut"
-            >
-              退出登录👋🏿
-            </div>
-          </el-menu-item>
-          <el-menu-item index="1-5">
-            <div
-              to="/signin"
-              :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
-              class="buttonHover modeText"
-              @click="
-                () => {
-                  this.$store.commit('toggleDarkMode');
-                }
-              "
-            >
-              💡 贤者模式 {{ !isDarkMode ? "关😇" : "开😍" }}
-            </div></el-menu-item
+          <router-link
+            v-if="!hasLogin"
+            to="/signin"
+            :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+            class="modeText"
+            >🎢 登陆·注册</router-link
           >
-        </el-submenu>
-      </el-menu>
+          <a
+            v-else
+            :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+            class="modeText"
+            style="cursor: pointer"
+            @click="logOut"
+          >
+            退出登录👋🏿
+          </a>
+          <a
+            :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
+            class="modeText"
+            @click="toggleDarkMode"
+          >
+            💡Dark Mode: {{ isDarkMode ? "on" : "off" }}
+          </a>
+        </div>
+      </div>
     </div>
     <ThemeSwitch v-show="isOnComputer" style="transform: scale(0.8)" />
   </div>
@@ -142,6 +129,7 @@
 <script>
 import ThemeSwitch from "@/components/button/ThemeSwitch.vue";
 import { auth } from "@/main";
+
 export default {
   name: "Header",
   components: { ThemeSwitch },
@@ -154,6 +142,7 @@ export default {
     return {
       isOnComputer: true,
       hasLogin: false,
+      isOpen: false,
     };
   },
   created() {
@@ -180,6 +169,13 @@ export default {
           });
       });
     },
+    toggleDarkMode() {
+      this.$store.commit("toggleDarkMode");
+    },
+    changeOpen() {
+      this.isOpen = !this.isOpen;
+      console.log(this.isOpen);
+    },
   },
 };
 </script>
@@ -188,6 +184,55 @@ export default {
 @import "@/global-styles/colors.scss";
 @import "@/global-styles/typography.scss";
 @import "@/global-styles/mixin.scss";
+.show-visible {
+  transform: skewY(0) rotate(0) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.show-hidden {
+  transform: skewY(-5deg) rotate(5deg) translateY(-30px);
+  opacity: 0;
+  visibility: hidden;
+}
+.phone {
+  position: relative;
+}
+.menuWrapper {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 32, 79, 0.4) 0%,
+    rgba(24, 32, 79, 0.25) 100%
+  );
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25), 0px 20px 40px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(40px);
+  padding: 10px;
+  border-radius: 50px;
+}
+.menuWrapper-dark {
+  background: rgba(15, 14, 71, 0.3);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(40px);
+  padding: 10px;
+  border-radius: 50px;
+}
+.phoneMenuWrapper {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  right: -20px;
+  background: rgba(15, 14, 71, 0.3);
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25),
+    inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(40px);
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 150px;
+  gap: 10px;
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 .buttonHover {
   padding: 10px;
   &:hover {
@@ -201,7 +246,7 @@ export default {
   font-weight: 400;
   font-size: 18px;
   @media (max-width: 900px) {
-    font-size: 10px;
+    font-size: 18px;
   }
   line-height: 22px;
   color: black;
@@ -232,6 +277,11 @@ export default {
   box-sizing: border-box;
   width: 100%;
   padding: 15px 15%;
+
+  @media (max-width: 900px) {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 
   a {
     font-weight: bold;

@@ -107,7 +107,6 @@ export default {
   },
   async created() {
     this.cartoonUrls = await this.getcartoonUrl();
-    console.log(this.cartoonUrls);
     if (document.body.clientWidth <= 900) {
       this.isOnComputer = false;
     }
