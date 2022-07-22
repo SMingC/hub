@@ -67,8 +67,14 @@
           :class="{ menuWrapper: !isDarkMode, 'menuWrapper-dark': isDarkMode }"
           @click="changeOpen"
         >
-          <img v-show="!isDarkMode" src="@/assets/svg/lines.svg" alt="menu" />
           <img
+            class="menuIcon"
+            v-show="!isDarkMode"
+            src="@/assets/svg/lines.svg"
+            alt="menu"
+          />
+          <img
+            class="menuIcon"
             v-show="isDarkMode"
             src="@/assets/svg/lines-light.svg"
             alt="menu"
@@ -138,6 +144,13 @@ export default {
       return this.$store.getters.isDarkMode;
     },
   },
+  mounted() {
+    document.addEventListener("click", (e) => {
+      if (e.target.className !== "menuIcon") {
+        this.isOpen = false;
+      }
+    });
+  },
   data() {
     return {
       isOnComputer: true,
@@ -176,6 +189,9 @@ export default {
       this.isOpen = !this.isOpen;
       console.log(this.isOpen);
     },
+  },
+  beforeDestroy() {
+    window.removeEventListener("click", () => {}, true);
   },
 };
 </script>
@@ -231,7 +247,7 @@ export default {
   display: grid;
   grid-template-columns: 150px;
   gap: 10px;
-  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: 0.3s ease-in-out;
 }
 .buttonHover {
   padding: 10px;
@@ -277,7 +293,6 @@ export default {
   box-sizing: border-box;
   width: 100%;
   padding: 15px 15%;
-
   @media (max-width: 900px) {
     display: grid;
     grid-template-columns: auto auto;

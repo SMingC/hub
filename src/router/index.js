@@ -2,13 +2,14 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import VideoHome from "@/views/VideoHome.vue";
-import Team from "@/views/Team.vue";
 import SignIn from "@/views/SignIn.vue";
 import Recover from "@/views/Recover.vue";
 import Request from "@/views/Request.vue";
+import Courses from "@/views/Courses.vue";
 
 import * as netlifyIdentityWidget from "netlify-identity-widget";
 
+const Team = () => import("@/views/Team.vue");
 Vue.use(VueRouter);
 
 const routes = [
@@ -42,6 +43,11 @@ const routes = [
     path: "/signin",
     name: "signin",
     component: SignIn,
+  },
+  {
+    path: "/course",
+    name: "course",
+    component: Courses,
   },
   {
     path: "/request",

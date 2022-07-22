@@ -4,118 +4,38 @@
     <div class="container">
       <h1 :class="{ dark: !isDarkMode, light: isDarkMode }">Team</h1>
       <div class="cards">
-        <transition
-          appear
-          appear-active-class="animate__animated animate__flipInX"
-        >
-          <a
-            class="card card-1"
-            :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
+        <template v-for="(content, index) in contents">
+          <transition
+            :key="content.url"
+            appear
+            appear-active-class="animate__animated animate__flipInX"
           >
-            <img
-              src="@/assets/svg/slack.png"
-              class="card-header"
-              :class="{
-                'light-header': !isDarkMode,
-                'dark-header': isDarkMode,
-              }"
-            />
-            <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">Slack</h3>
-            <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">
-              Messaging app for all team communication.
-            </p>
-          </a>
-        </transition>
-        <transition
-          appear
-          appear-active-class="animate__animated animate__flipInX"
-        >
-          <a
-            class="card card-2"
-            :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
-          >
-            <img
-              src="@/assets/svg/notion.png"
-              class="card-header"
-              :class="{
-                'light-header': !isDarkMode,
-                'dark-header': isDarkMode,
-              }"
-            />
-            <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">Notion</h3>
-            <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">
-              All-in-one workspace.
-            </p>
-          </a>
-        </transition>
-        <transition
-          appear
-          appear-active-class="animate__animated animate__flipInX"
-        >
-          <a
-            class="card card-3"
-            :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
-          >
-            <img
-              src="@/assets/svg/figma.png"
-              class="card-header"
-              :class="{
-                'light-header': !isDarkMode,
-                'dark-header': isDarkMode,
-              }"
-            />
-            <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">Figma</h3>
-            <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">
-              Collaborative design tool.
-            </p>
-          </a>
-        </transition>
-        <transition
-          appear
-          appear-active-class="animate__animated animate__flipInX"
-        >
-          <a
-            class="card card-4"
-            :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
-          >
-            <img
-              src="@/assets/svg/contentful.png"
-              class="card-header"
-              :class="{
-                'light-header': !isDarkMode,
-                'dark-header': isDarkMode,
-              }"
-            />
-            <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">
-              Contentful
-            </h3>
-            <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">
-              Content management system.
-            </p>
-          </a>
-        </transition>
-        <transition
-          appear
-          appear-active-class="animate__animated animate__flipInX"
-        >
-          <a
-            class="card card-5"
-            :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
-          >
-            <img
-              src="@/assets/svg/dropbox.png"
-              class="card-header"
-              :class="{
-                'light-header': !isDarkMode,
-                'dark-header': isDarkMode,
-              }"
-            />
-            <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">Dropbox</h3>
-            <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">
-              Storage space in the cloud.
-            </p>
-          </a>
-        </transition>
+            <a
+              class="card"
+              style="cursor: pointer"
+              :id="`card-${index + 1}`"
+              :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
+              @click="goTeams(index)"
+            >
+              <img
+                :src="content.illustration.url"
+                class="card-header"
+                :class="{
+                  'light-header': !isDarkMode,
+                  'dark-header': isDarkMode,
+                }"
+              />
+              <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">
+                {{ content.title }}
+              </h3>
+              <p
+                :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+              >
+                {{ content.description }}
+              </p>
+            </a>
+          </transition>
+        </template>
       </div>
     </div>
   </div>
@@ -123,15 +43,78 @@
 
 <script>
 import Header from "@/components/Headers/Header.vue";
-
+import Courses from "@/views/Courses.vue";
+import "markdown-it-vue/dist/markdown-it-vue.css";
 export default {
   name: "Team",
   components: {
     Header,
+    Courses,
+  },
+  data() {
+    return {
+      currentScroll: 0,
+      contents: [],
+    };
   },
   computed: {
     isDarkMode() {
       return this.$store.getters.isDarkMode;
+    },
+  },
+  async created() {
+    this.contents = await this.getcartoonUrl();
+    // console.log(this.contents);
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      this.currentScroll = window.pageYOffset; //表示当前滚动的位置
+    },
+    goTeams(index) {
+      this.$router.push({
+        name: "course",
+        query: {
+          index: index,
+        },
+      });
+    },
+    getcartoonUrl: async () => {
+      const query = `{
+        advancedReactCollection{
+          items{
+            illustration{
+              url
+            }
+            title,
+            description,
+          }
+        }
+      }`;
+      const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.VUE_APP_CONTENTFUL_SPACE_ID}/`;
+
+      const fetchOptions = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+      };
+
+      try {
+        const response = await fetch(fetchUrl, fetchOptions).then((response) =>
+          response.json()
+        );
+        return response.data.advancedReactCollection.items;
+      } catch (error) {
+        throw new Error("Could not receive the data from Contentful!");
+      }
     },
   },
 };
@@ -140,6 +123,15 @@ export default {
 <style scoped lang="scss">
 @import "@/global-styles/colors.scss";
 @import "@/global-styles/typography.scss";
+.illustration {
+  width: 700px;
+  @media (max-width: 900px) {
+    width: 350px;
+  }
+}
+.manage {
+  overflow-x: hidden;
+}
 .container {
   padding-left: 15%;
   padding-right: 10%;
@@ -153,26 +145,29 @@ export default {
   align-items: space-evenly;
 }
 
-.card-1 {
+#card-1 {
   animation-delay: 0s;
 }
-.card-2 {
+#card-2 {
   animation-delay: 0.5s;
 }
-.card-3 {
+#card-3 {
   animation-delay: 1s;
 }
-.card-4 {
+#card-4 {
   animation-delay: 1.5s;
 }
-.card-5 {
+#card-5 {
   animation-delay: 2s;
+}
+#card-6 {
+  animation-delay: 2.5s;
 }
 
 .card {
   width: 100%;
   max-width: 300px;
-  height: 400px;
+  height: 420px;
   border-radius: 10px;
   margin: 20px;
 }

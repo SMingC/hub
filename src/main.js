@@ -18,6 +18,7 @@ export const auth = new GoTrue({
 });
 
 Vue.use(ElementUI);
+
 new Vue({
   router,
   store,

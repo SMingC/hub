@@ -1,117 +1,92 @@
 <template>
-  <div id="Wrapper" @click="bookHotel">
-    <div id="ContentWrapper">
-      <div id="Content">
-        <div id="WalletWrapper">
-          <div id="Wallet">
-            <img id="pricing" src="@/img/pricing.svg" alt="pricing" />
-            <img id="back" src="@/img/background.svg" alt="back" />
-          </div>
-          <img src="@/img/ring.svg" alt="ring" id="ring" />
-        </div>
-        <div id="TextWrapper">
-          <div id="Title">hotel</div>
-          <div id="description">
-            让所有热爱生活的人， 安享艾登花园理想之园。
-          </div>
-        </div>
-      </div>
+  <div class="purchaseButton" @click="goSignIn">
+    <div class="IconWrapper">
+      <img src="@/assets/svg/credit.svg" class="icon" />
+      <img src="@/assets/svg/icon-ring.svg" class="Ring" />
+    </div>
+    <div class="TextWrapper">
+      <div class="Title">not logged in yet</div>
+      <div class="Subtital">Click me to log in</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["bookHotel"],
+  methods: {
+    goSignIn() {
+      this.$router.push("/signin");
+    },
+  },
 };
 </script>
 
-<style scoped>
-#Wrapper {
-  cursor: pointer;
-  position: relative;
-}
-#Wrapper *,
-#Wrapper {
-  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-#Wrapper:hover {
-  transform: scale(1.2);
-}
-#Wrapper:hover #ring {
-  transform: scale(1.1) rotate(30deg);
-}
-#Wrapper:hover #back {
-  filter: hue-rotate(10deg) brightness(150%) saturate(120%);
-}
-#Wrapper #ContentWrapper {
+<style lang="scss" scoped>
+.purchaseButton {
+  max-width: 280px;
+  height: 77px;
   padding: 12px;
-  gap: 10px;
-  width: 280px;
-  height: 81px;
   background: linear-gradient(180deg, #ffffff 0%, #d9dfff 100%);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1),
     0px 20px 40px rgba(23, 0, 102, 0.2),
     inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-}
-#Wrapper #Content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
+  grid-template-columns: 53px auto;
   align-items: center;
+  gap: 20px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1),
+      0px 30px 60px rgba(23, 0, 102, 0.5),
+      inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    .icon {
+      transform: scale(1.2);
+    }
+    .IconWrapper {
+      filter: hue-rotate(10deg) brightness(150%) saturate(120%);
+    }
+    .Ring {
+      transform: rotate(30deg) scale(1.2) translate(1px, 1px);
+    }
+  }
 }
-#Wrapper #Content #WalletWrapper {
+.TextWrapper {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  gap: 4px;
 }
-#Wrapper #Content #WalletWrapper #Wallet {
-  position: relative;
-}
-#Wrapper #Content #WalletWrapper #Wallet #pricing {
-  transform: scale(0.87);
-  z-index: 100;
-  position: relative;
-  width: 40px;
-  height: 40px;
-}
-#Wrapper #Content #WalletWrapper #Wallet #back {
-  position: absolute;
-  left: -19px;
-  top: -13px;
-}
-#Wrapper #Content #WalletWrapper #ring {
-  position: absolute;
-  left: -7px;
-  top: -1px;
-}
-#Wrapper #Content #TextWrapper {
-  margin-left: -120px;
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  justify-content: center;
-  align-items: center;
-}
-#Wrapper #Content #TextWrapper #Title {
-  width: 45px;
-  height: 19px;
-  font-family: "ABeeZee";
-  font-style: italic;
-  font-weight: 400;
+.Title {
+  font-weight: 600;
   font-size: 15px;
-  line-height: 130%;
+  line-height: 18px;
+  @media (max-width: 900px) {
+    font-size: 10px;
+  }
   text-transform: uppercase;
-  color: #000000;
+  color: black;
 }
-#Wrapper #Content #TextWrapper #description {
-  width: 143px;
-  height: 34px;
-  font-family: "ABeeZee";
-  font-style: normal;
-  font-weight: 400;
+.Subtital {
+  font-weight: normal;
   font-size: 13px;
   line-height: 130%;
-  /* or 17px */
-  color: #595c7b;
+  color: black;
+  opacity: 0.7;
+}
+.Ring {
+  position: absolute;
+  top: -15px;
+  left: -16px;
+}
+.IconWrapper {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(200.44deg, #4316db 13.75%, #9076e7 98.38%);
+  border-radius: 50%;
+  display: grid;
+  justify-content: center;
+  align-content: center; //设置元素位置-常见的
+  justify-self: center;
+  position: relative;
 }
 </style>

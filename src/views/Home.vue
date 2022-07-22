@@ -19,6 +19,10 @@ export default {
     HomeTop,
     News,
   },
+  mounted() {},
+  data() {
+    return { result: "" };
+  },
 };
 </script>
 
