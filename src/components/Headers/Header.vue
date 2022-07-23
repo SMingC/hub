@@ -168,6 +168,12 @@ export default {
   },
   methods: {
     logOut() {
+      this.$notify({
+        title: "成功退出🫠",
+        message: "页面即将跳转，请握好扶手🏃🏻",
+        type: "success",
+        duration: 1500,
+      });
       const user = auth.currentUser();
       sessionStorage.clear();
 
@@ -212,6 +218,7 @@ export default {
 }
 .phone {
   position: relative;
+  z-index: 1100;
 }
 .menuWrapper {
   background: linear-gradient(
@@ -286,7 +293,9 @@ export default {
 }
 
 #nav {
+  z-index: 1100;
   padding: 25px;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -320,7 +329,7 @@ export default {
 .nav-1 {
   display: flex;
   align-items: center;
-
+  z-index: 1100;
   a {
     margin-left: 20px;
     margin-right: 20px;

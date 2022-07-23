@@ -1,6 +1,5 @@
 <template>
-  <!-- transition => animate.css库 -->
-  <div v-show="!isOnComputer" class="Wrap">
+  <div v-show="!isOnComputer">
     <!-- 下面的都是在手机上显示的东西 ==> v-show="!isOnComputer" -->
     <transition
       name="zoomIn"
@@ -45,7 +44,6 @@ import VideoTemplate from "@/components/group/movieHome/navigationBar/VideoTempl
 import AccountButton from "@/components/group/movieHome/navigationBar/AccountButton.vue";
 import HomeButton from "@/components/button/HomeButton.vue";
 import ThemeSwitch from "@/components/button/ThemeSwitch.vue";
-import { auth } from "@/main";
 export default {
   props: ["isOnComputer"],
   components: {
@@ -85,6 +83,11 @@ export default {
 @import "@/global-styles/mixin.scss";
 @import "@/global-styles/colors.scss";
 @import "@/global-styles/typography.scss";
+
+.Wrap {
+  overflow-x: hidden;
+}
+
 .loginText {
   font-family: "HanziPen SC";
   font-style: normal;
@@ -173,6 +176,7 @@ export default {
 }
 .phoneButton {
   position: relative;
+  z-index: 1000;
   .LogContent {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.4);

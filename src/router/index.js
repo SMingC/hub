@@ -5,7 +5,7 @@ import VideoHome from "@/views/VideoHome.vue";
 import SignIn from "@/views/SignIn.vue";
 import Recover from "@/views/Recover.vue";
 import Request from "@/views/Request.vue";
-import Courses from "@/views/Courses.vue";
+import Courses from "@/views/Courses/ReactCourses.vue";
 
 import * as netlifyIdentityWidget from "netlify-identity-widget";
 

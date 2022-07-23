@@ -27,6 +27,7 @@ export default {
 @import "@/global-styles/mixin.scss";
 .videoWrapper {
   overflow-x: auto;
+  z-index: 1000;
   @include gridRowsCenter(3);
   justify-items: start;
   padding: 40px;

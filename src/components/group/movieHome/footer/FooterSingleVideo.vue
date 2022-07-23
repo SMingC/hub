@@ -18,6 +18,7 @@ export default {
 @import "@/global-styles/mixin.scss";
 .cardSingleFooter {
   position: relative;
+  z-index: 1000;
   .showCard {
     width: 300px;
     @media (max-width: 900px) {

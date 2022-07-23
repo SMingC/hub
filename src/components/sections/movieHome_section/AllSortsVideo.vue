@@ -59,7 +59,9 @@ export default {
   props: ["isOnComputer"],
 };
 </script>
-
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
+.SortWrapper {
+  z-index: 1000;
+}
 </style>

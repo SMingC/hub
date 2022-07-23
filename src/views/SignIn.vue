@@ -90,6 +90,14 @@ export default {
         .then((res) => {
           console.log("===sigin success ===", res);
           sessionStorage.setItem("email", email);
+          this.$refs.Load.shoutDown();
+          this.$refs.Blur.style.display = "none";
+          this.$notify({
+            title: "登陆成功",
+            message: "Welcome Home!!! 💃",
+            type: "success",
+            duration: 1500,
+          });
           this.$router.go(-1);
         })
         .catch((err) => {

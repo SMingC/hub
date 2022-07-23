@@ -39,6 +39,7 @@ export default {
 @import "@/global-styles/mixin.scss";
 
 .videoContentWrapper {
+  z-index: 1000;
   display: grid;
   padding-top: 40px;
   @media (max-width: 900px) {

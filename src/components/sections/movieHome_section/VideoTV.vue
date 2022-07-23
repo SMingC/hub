@@ -10,7 +10,7 @@
           where="/"
           style="margin-top: 200px; margin-left: 300px"
         />
-        <div v-for="item in 2" :key="item">
+        <div style="z-index: 1000" v-for="item in 2" :key="item">
           <TVcards
             :url="require('@/assets/img/coverCard.png')"
             name="MovieName"
@@ -54,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
 .tvCardsWrapper {
+  z-index: 1000;
   .tvCardsContent {
     @include gridRowsStart(2);
     padding-left: 30px;

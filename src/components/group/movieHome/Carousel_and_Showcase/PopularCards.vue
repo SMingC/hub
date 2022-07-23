@@ -53,6 +53,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
 .centerCards {
+  z-index: 1000;
   padding-top: 60px;
   @media (max-width: 900px) {
     padding-top: 40px;

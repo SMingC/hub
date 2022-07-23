@@ -65,6 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 .card {
+  z-index: 1000;
   cursor: pointer;
   width: 300px;
   height: 250px;

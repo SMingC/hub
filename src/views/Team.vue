@@ -1,14 +1,26 @@
 <template>
   <div class="manage">
     <Header />
-    <!-- <div class="backgroundWrap">
+    <div class="backgroundWrap">
+      <el-skeleton v-show="!getted" :rows="6" animated />
       <div class="Background"></div>
-      <img class="waves" src="@/assets/waves/hero-wave1.svg" />
-      <img class="waves" src="@/assets/waves/hero-wave2.svg" />
-      <img class="waves" src="@/assets/waves/hero-wave3.svg" />
-    </div> -->
+      <img
+        class="waves"
+        src="@/assets/waves/hero-wave1.svg"
+        style="top: 100px; filter: blur(60px)"
+      />
+      <img
+        class="waves"
+        src="@/assets/waves/hero-wave2.svg"
+        style="top: 350px"
+      />
+      <img
+        class="waves"
+        src="@/assets/waves/hero-wave3.svg"
+        style="top: 550px"
+      />
+    </div>
     <div class="container">
-      <h1 :class="{ dark: !isDarkMode, light: isDarkMode }">React</h1>
       <div class="cards">
         <template v-for="(content, index) in contents">
           <transition
@@ -18,8 +30,12 @@
           >
             <a
               class="card"
-              style="cursor: pointer"
-              :id="`card-${index + 1}`"
+              :style="
+                'cursor: pointer; z-index: 1000;' +
+                'animation-delay:' +
+                (index + 1) * 0.5 +
+                's'
+              "
               :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
               @click="goTeams(index)"
             >
@@ -35,7 +51,10 @@
                 {{ index + 1 + "." + content.title }}
               </h3>
               <p
-                :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
+                :class="{
+                  'light-text': isDarkMode,
+                  'dark-text': !isDarkMode,
+                }"
               >
                 {{ content.description }}
               </p>
@@ -49,7 +68,7 @@
 
 <script>
 import Header from "@/components/Headers/Header.vue";
-import Courses from "@/views/Courses.vue";
+import Courses from "@/views/Courses/ReactCourses.vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
 export default {
   name: "Team",
@@ -61,6 +80,7 @@ export default {
     return {
       currentScroll: 0,
       contents: [],
+      getted: false,
     };
   },
   computed: {
@@ -70,6 +90,7 @@ export default {
   },
   async created() {
     this.contents = await this.getcartoonUrl();
+    this.getted = true;
     // console.log(this.contents);
   },
   mounted() {
@@ -130,20 +151,20 @@ export default {
 @import "@/global-styles/colors.scss";
 @import "@/global-styles/typography.scss";
 
-/* .backgroundWrap {
+.backgroundWrap {
   position: relative;
   .waves {
     position: absolute;
-    z-index: -1;
+    z-index: 10;
   }
   .Background {
     position: absolute;
     width: 100%;
-    height: 800px;
+    height: 100vh;
     background: linear-gradient(180deg, #4316db 0%, #9076e7 100%);
-    z-index: -1;
+    z-index: 10;
   }
-} */
+}
 .illustration {
   width: 700px;
   @media (max-width: 900px) {
@@ -156,33 +177,16 @@ export default {
 .container {
   padding-left: 15%;
   padding-right: 10%;
+  z-index: 1000;
 }
 
 .cards {
   margin: 0 -20px;
+  margin-top: 120px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: space-evenly;
-}
-
-#card-1 {
-  animation-delay: 0s;
-}
-#card-2 {
-  animation-delay: 0.5s;
-}
-#card-3 {
-  animation-delay: 1s;
-}
-#card-4 {
-  animation-delay: 1.5s;
-}
-#card-5 {
-  animation-delay: 2s;
-}
-#card-6 {
-  animation-delay: 2.5s;
 }
 
 .card {

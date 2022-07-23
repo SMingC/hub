@@ -25,6 +25,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
 .footerVideo {
+  z-index: 1000;
   .footerVideoContent {
     overflow-x: auto;
     @include gridRowsStart(2);

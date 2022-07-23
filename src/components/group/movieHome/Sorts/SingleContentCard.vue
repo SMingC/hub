@@ -26,6 +26,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
 .cinematic {
+  z-index: 1000;
   position: relative;
   &:hover {
     @include hoverChangeUp;

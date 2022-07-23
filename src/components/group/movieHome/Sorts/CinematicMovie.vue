@@ -27,6 +27,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/global-styles/mixin.scss";
 .cinematicWrapper {
+  z-index: 1000;
   margin-top: -100px;
   padding: 50px;
   @media (max-width: 900px) {

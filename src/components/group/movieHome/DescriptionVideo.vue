@@ -10,6 +10,7 @@ export default {
 
 <style lang="scss" scoped>
 .text {
+  z-index: 1000;
   margin-top: 100px;
   font-family: "Hannotate SC";
   font-style: normal;
