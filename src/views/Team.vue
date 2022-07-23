@@ -1,8 +1,14 @@
 <template>
   <div class="manage">
     <Header />
+    <!-- <div class="backgroundWrap">
+      <div class="Background"></div>
+      <img class="waves" src="@/assets/waves/hero-wave1.svg" />
+      <img class="waves" src="@/assets/waves/hero-wave2.svg" />
+      <img class="waves" src="@/assets/waves/hero-wave3.svg" />
+    </div> -->
     <div class="container">
-      <h1 :class="{ dark: !isDarkMode, light: isDarkMode }">Team</h1>
+      <h1 :class="{ dark: !isDarkMode, light: isDarkMode }">React</h1>
       <div class="cards">
         <template v-for="(content, index) in contents">
           <transition
@@ -26,7 +32,7 @@
                 }"
               />
               <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">
-                {{ content.title }}
+                {{ index + 1 + "." + content.title }}
               </h3>
               <p
                 :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }"
@@ -123,6 +129,21 @@ export default {
 <style scoped lang="scss">
 @import "@/global-styles/colors.scss";
 @import "@/global-styles/typography.scss";
+
+/* .backgroundWrap {
+  position: relative;
+  .waves {
+    position: absolute;
+    z-index: -1;
+  }
+  .Background {
+    position: absolute;
+    width: 100%;
+    height: 800px;
+    background: linear-gradient(180deg, #4316db 0%, #9076e7 100%);
+    z-index: -1;
+  }
+} */
 .illustration {
   width: 700px;
   @media (max-width: 900px) {

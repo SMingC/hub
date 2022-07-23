@@ -90,7 +90,7 @@ export default {
         .then((res) => {
           console.log("===sigin success ===", res);
           sessionStorage.setItem("email", email);
-          this.$router.replace("/video");
+          this.$router.go(-1);
         })
         .catch((err) => {
           console.log("===bad sigin", err);

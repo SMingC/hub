@@ -42,7 +42,7 @@
         to="/team"
         :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
         class="buttonHover modeText"
-        >👩🏼‍🤝‍👨🏿 团队</router-link
+        >👩🏼‍🤝‍👨🏿 课程</router-link
       >
       <router-link
         v-if="!hasLogin"
@@ -100,7 +100,7 @@
             to="/team"
             :class="{ 'light-nav': !isDarkMode, 'dark-nav': isDarkMode }"
             class="modeText"
-            >👩🏼‍🤝‍👨🏿 团队</router-link
+            >👩🏼‍🤝‍👨🏿 课程</router-link
           >
           <router-link
             v-if="!hasLogin"
@@ -241,7 +241,7 @@ export default {
   background: rgba(15, 14, 71, 0.3);
   box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25),
     inset 0px 0px 0px 0.5px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(40px);
+  backdrop-filter: blur(200px);
   border-radius: 20px;
   padding: 20px;
   display: grid;

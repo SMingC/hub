@@ -5,7 +5,7 @@
       <img src="@/assets/svg/icon-ring.svg" class="Ring" />
     </div>
     <div class="TextWrapper">
-      <div class="Title">not logged in yet</div>
+      <div class="Title">你不是vip😅</div>
       <div class="Subtital">Click me to log in</div>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .purchaseButton {
-  max-width: 280px;
+  width: 250px;
   height: 77px;
   padding: 12px;
   background: linear-gradient(180deg, #ffffff 0%, #d9dfff 100%);
@@ -60,9 +60,6 @@ export default {
   font-weight: 600;
   font-size: 15px;
   line-height: 18px;
-  @media (max-width: 900px) {
-    font-size: 10px;
-  }
   text-transform: uppercase;
   color: black;
 }
@@ -72,6 +69,9 @@ export default {
   line-height: 130%;
   color: black;
   opacity: 0.7;
+  @media (max-width: 900px) {
+    font-size: 10px;
+  }
 }
 .Ring {
   position: absolute;

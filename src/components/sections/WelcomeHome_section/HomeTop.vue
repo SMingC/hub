@@ -45,7 +45,7 @@
           />
           <HomeButton
             :isColorReversed="true"
-            description="关于我们"
+            description="一些课程"
             where="/team"
           />
         </div>
@@ -61,7 +61,7 @@
       <HomeButton
         v-show="!isOnComputer"
         :isColorReversed="true"
-        description="关于我们"
+        description="一些课程"
         where="/team"
         class="onPhonButton"
       />
