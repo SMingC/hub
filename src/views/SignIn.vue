@@ -78,9 +78,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$notify.info({
-        title: "Loading...",
-      });
       const email = this.email;
       const password = this.password;
       this.hasText = false;
