@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .pageButton {
+  z-index: 1100;
   padding: 20px 30px;
   align-items: center;
   justify-items: center;

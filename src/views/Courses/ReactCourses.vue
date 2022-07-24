@@ -2,13 +2,13 @@
   <div class="reactC">
     <Header />
     <div class="backgroundWrap">
-      <div @click="prevPage">
+      <div v-show="isOnComputer" style="z-index: 1100" @click="prevPage">
         <ChangePage
           :url="require('@/assets/icons/previous_page.svg')"
           class="prevPage"
         />
       </div>
-      <div @click="nextPage">
+      <div v-show="isOnComputer" style="z-index: 1100" @click="nextPage">
         <ChangePage
           :url="require('@/assets/icons/next_page.svg')"
           class="nextPage"
@@ -82,20 +82,27 @@ import ChangePage from "@/components/button/ChangePage.vue";
 export default {
   async created() {
     this.contents = await this.getcartoonUrl();
-    // console.log(this.contents);
+
     const query = this.$route.query;
     this.index = query.index;
+
     if (sessionStorage.getItem("email") !== null) {
       this.isPro = true;
     }
+
     if (this.index == 0) {
       this.leftPageButton_show = false;
     }
     if (this.index == this.contents.length) {
       this.rightPageButton_show = false;
     }
+
     this.randomWave3 = Math.floor(Math.random() * 3 + 1);
-    this.randomWave5 = Math.floor(Math.random() * 5 + 1);
+    this.randomWave5 = Math.floor(Math.random() * 4 + 1);
+
+    if (document.body.clientWidth < 900) {
+      this.isOnComputer = false;
+    }
   },
   components: { MarkdownItVue, Header, PurchaseButton, ChangePage },
   data() {
@@ -105,6 +112,7 @@ export default {
       isPro: false,
       randomWave3: 1,
       randomWave5: 1,
+      isOnComputer: true,
     };
   },
   computed: {
@@ -121,6 +129,7 @@ export default {
     nextPage() {
       if (this.index < this.contents.length - 1) {
         this.index++;
+        console.log("clicked");
       }
     },
     getcartoonUrl: async () => {
@@ -203,7 +212,11 @@ export default {
   }
 }
 .Coding {
+  z-index: 1100;
   margin-top: 430px;
+  @media (max-width: 900px) {
+    margin-top: 230px;
+  }
 }
 
 .CourseWrapper {
@@ -234,7 +247,7 @@ export default {
   font-weight: bold;
   font-size: 60px;
   @media (max-width: 900px) {
-    font-size: 45px;
+    font-size: 40px;
   }
   line-height: 72px;
   mix-blend-mode: normal;
@@ -247,5 +260,8 @@ export default {
   font-size: 20px;
   line-height: 140%;
   mix-blend-mode: normal;
+  @media (max-width: 900px) {
+    font-size: 15px;
+  }
 }
 </style>

@@ -22,45 +22,39 @@
     </div>
     <div class="container">
       <div class="cards">
-        <template v-for="(content, index) in contents">
-          <transition
-            :key="content.url"
-            appear
-            appear-active-class="animate__animated animate__flipInX"
+        <transition
+          appear
+          appear-active-class="animate__animated animate__flipInX"
+        >
+          <a
+            class="card"
+            style="cursor: pointer; z-index: 1000; animation-delay: 0.5s"
+            :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
+            @click="goAdvancedreact"
           >
-            <a
-              class="card"
-              :style="
-                'cursor: pointer; z-index: 1000;' +
-                'animation-delay:' +
-                (index + 1) * 0.5 +
-                's'
-              "
-              :class="{ 'light-card': !isDarkMode, 'dark-card': isDarkMode }"
-              @click="goTeams(index)"
+            <img
+              src="https://images.ctfassets.net/ooa29xqb8tix/6VgUemHCY8KcjzznwJoZe1/eff98cb2a5bc0d74ec8cd1252223e115/React_Hook200x150_cover.svg"
+              class="card-header"
+              :class="{
+                'light-header': !isDarkMode,
+                'dark-header': isDarkMode,
+              }"
+            />
+            <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">
+              Build a web app with React Hooks
+            </h3>
+            <p
+              :class="{
+                'light-text': isDarkMode,
+                'dark-text': !isDarkMode,
+              }"
             >
-              <img
-                :src="content.illustration.url"
-                class="card-header"
-                :class="{
-                  'light-header': !isDarkMode,
-                  'dark-header': isDarkMode,
-                }"
-              />
-              <h3 :class="{ dark: !isDarkMode, light: isDarkMode }">
-                {{ index + 1 + "." + content.title }}
-              </h3>
-              <p
-                :class="{
-                  'light-text': isDarkMode,
-                  'dark-text': !isDarkMode,
-                }"
-              >
-                {{ content.description }}
-              </p>
-            </a>
-          </transition>
-        </template>
+              Learn how we built the new Design+Code site with React Hooks using
+              Gatsby, Netlify, and advanced CSS techniques with Styled
+              Components.
+            </p>
+          </a>
+        </transition>
       </div>
     </div>
   </div>
@@ -88,10 +82,8 @@ export default {
       return this.$store.getters.isDarkMode;
     },
   },
-  async created() {
-    this.contents = await this.getcartoonUrl();
+  created() {
     this.getted = true;
-    // console.log(this.contents);
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
@@ -103,45 +95,8 @@ export default {
     handleScroll() {
       this.currentScroll = window.pageYOffset; //表示当前滚动的位置
     },
-    goTeams(index) {
-      this.$router.push({
-        name: "course",
-        query: {
-          index: index,
-        },
-      });
-    },
-    getcartoonUrl: async () => {
-      const query = `{
-        advancedReactCollection{
-          items{
-            illustration{
-              url
-            }
-            title,
-            description,
-          }
-        }
-      }`;
-      const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.VUE_APP_CONTENTFUL_SPACE_ID}/`;
-
-      const fetchOptions = {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query }),
-      };
-
-      try {
-        const response = await fetch(fetchUrl, fetchOptions).then((response) =>
-          response.json()
-        );
-        return response.data.advancedReactCollection.items;
-      } catch (error) {
-        throw new Error("Could not receive the data from Contentful!");
-      }
+    goAdvancedreact() {
+      this.$router.push("/advanced_react");
     },
   },
 };
@@ -192,7 +147,7 @@ export default {
 .card {
   width: 100%;
   max-width: 300px;
-  height: 420px;
+  height: 480px;
   border-radius: 10px;
   margin: 20px;
 }
